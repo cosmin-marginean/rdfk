@@ -1,0 +1,21 @@
+@prefix t1: <http://test1.com/> .
+@prefix t2: <http://test2.com/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+t1:one t2:hasName "John Smith" .
+
+t1:two t2:hasName "Jane Smith";
+  t2:hasAge "23"^^xsd:int .
+
+t1:three t2:hasName "Angela White";
+  t2:hasWeight 3.23412E0;
+  t2:hasHeight 13.12938015;
+  t2:isEmployed true;
+  t2:lastChecked "2001-12-17T16:51:14.691Z"^^xsd:dateTime;
+  t2:recordTimestamp "2002-04-02T09:51:14.721"^^xsd:dateTime;
+  t2:modifiedDate "2021-06-29"^^xsd:date;
+  t2:createdDate "1983-11-04T12:33:55.002Z"^^xsd:dateTime .
+
+t1:x t1:name "Tom" .
+
+t1:y t1:name "Jane" .

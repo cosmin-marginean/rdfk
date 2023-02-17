@@ -1,0 +1,27 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix bods: <http://bods.openownership.org/vocabulary/> .
+@prefix bodsr: <http://bods.openownership.org/resource/> .
+
+bodsr:openownership-register-9473160899263237344 a bods:RegisteredEntity;
+  foaf:name "FUTURE CLASSIC VEHICLES LIMITED";
+  bods:jurisdictionCode "GB" .
+
+bodsr:openownership-register-12159155821204780520 a bods:Person;
+  foaf:name "David Ronald Murray";
+  bods:personType "knownPerson";
+  bods:nationalityCode "GB";
+  bods:ownsOrControls bodsr:openownership-register-9473160899263237344 .
+
+bodsr:openownership-register-5450813549318202701 a bods:OwnershipCtrlStatement;
+  bods:hasInterestedParty bodsr:openownership-register-12159155821204780520;
+  bods:hasSubject bodsr:openownership-register-9473160899263237344;
+  bods:statementId "openownership-register-5450813549318202701";
+  bods:statementDate "2016-04-06"^^xsd:date;
+  bods:sourceType "officialRegister";
+  bods:statesInterest bodsr:openownership-register-5450813549318202701_0, bodsr:openownership-register-5450813549318202701_1,
+    bodsr:openownership-register-5450813549318202701_2, bodsr:openownership-register-5450813549318202701_3 .
+

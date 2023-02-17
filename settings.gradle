@@ -1,0 +1,3 @@
+rootProject.name = 'rdfk-parent'
+
+include 'rdfk'
