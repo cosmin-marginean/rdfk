@@ -26,7 +26,7 @@ outputFile.outputStream().use { outputStream ->
         valueFactory.createStatement(
             valueFactory.createIRI(T1, "two"),
             valueFactory.createIRI(T2, "name"),
-            valueFactory.createLiteral("Angela White")
+            valueFactory.createLiteral("Angela Smith")
         )
     )
     rdfWriter.endRDF()
