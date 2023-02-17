@@ -1,4 +1,4 @@
-# rdfk
+# RDF with Kotlin
 
 ![Coveralls](https://img.shields.io/coverallsCoverage/github/cosmin-marginean/rdfk)
 
@@ -33,7 +33,7 @@ outputFile.outputStream().use { outputStream ->
 }
 ```
 
-#### With rdfk
+#### With RDFK
 ```kotlin
 val N1 = "http://test1.com/".namespace("t1")
 val N2 = "http://test2.com/".namespace("t2")
