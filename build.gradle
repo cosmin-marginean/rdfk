@@ -61,7 +61,7 @@ jacocoTestReport {
 }
 
 dokkaHtml {
-    outputDirectory.set(file("../docs/dokka/${project.name}"))
+    outputDirectory.set(file("docs/dokka/${project.name}"))
 }
 
 publishing {
