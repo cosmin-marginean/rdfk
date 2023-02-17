@@ -21,4 +21,3 @@ git push --tags --force
 gh release create "${VERSION}" --verify-tag --title "RDF4k ${VERSION}" --notes "Version ${VERSION}"
 
 echo "Finished building version $VERSION"
-
