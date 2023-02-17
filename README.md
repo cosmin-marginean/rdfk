@@ -5,6 +5,7 @@
 A Kotlin library for working with RDF. It uses [RDF4J](https://rdf4j.org/) internally
 and the design is largely based on extension functions, providing a more fluent and functional approach.
 
+#### With native RDF4J
 ```kotlin
 val T1 = "http://test1.com/"
 val T2 = "http://test2.com/"
@@ -32,7 +33,7 @@ outputFile.outputStream().use { outputStream ->
 }
 ```
 
-To this
+#### With rdfk
 ```kotlin
 val N1 = "http://test1.com/".namespace("t1")
 val N2 = "http://test2.com/".namespace("t2")
