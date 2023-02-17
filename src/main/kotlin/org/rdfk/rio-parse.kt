@@ -56,6 +56,7 @@ fun File.toRdfModel(format: RDFFormat = fileRdfFormat(this.name)!!): Model {
     }
 }
 
-fun resourceAsRdfModel(classpathLocation: String, format: RDFFormat): Model {
+fun resourceToRdfModel(classpathLocation: String, format: RDFFormat = RDFFormat.TURTLE): Model {
     return resourceAsInput(classpathLocation).toRdfModel(format)
 }
+

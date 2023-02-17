@@ -50,14 +50,13 @@ class RioParserTest {
 
     @Test
     fun `inputstream to rdf statements`() {
-        val statements = resourceAsInput("test-input.ttl").toRdfStatements(RDFFormat.TURTLE)
-        assertStatementsMatch(statements)
+        assertStatementsMatch(resourceAsInput("test-input.ttl").toRdfStatements(RDFFormat.TURTLE))
     }
 
     @Test
     fun `file to rdf statements`() {
-        val statements = File("src/test/resources/test-input.ttl").toRdfStatements(RDFFormat.TURTLE)
-        assertStatementsMatch(statements)
+        assertStatementsMatch(File("src/test/resources/test-input.ttl").toRdfStatements())
+        assertStatementsMatch(File("src/test/resources/test-input.ttl").toRdfStatements(RDFFormat.TURTLE))
     }
 
     @Test
@@ -72,11 +71,14 @@ class RioParserTest {
         val model = File("src/test/resources/test-input.ttl").toRdfModel(RDFFormat.TURTLE)
         assertStatementsMatch(model)
         assertNamespacesMatch(model.namespaces)
+        val model2 = File("src/test/resources/test-input.ttl").toRdfModel()
+        assertStatementsMatch(model2)
+        assertNamespacesMatch(model2.namespaces)
     }
 
     @Test
     fun `resource as model`() {
-        val model = resourceAsRdfModel("test-input.ttl", RDFFormat.TURTLE)
+        val model = resourceToRdfModel("test-input.ttl")
         assertStatementsMatch(model)
         assertNamespacesMatch(model.namespaces)
     }

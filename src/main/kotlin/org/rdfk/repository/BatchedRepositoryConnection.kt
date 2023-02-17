@@ -1,20 +1,27 @@
-package org.rdfk
+package org.rdfk.repository
 
 import org.eclipse.rdf4j.model.IRI
 import org.eclipse.rdf4j.model.Resource
 import org.eclipse.rdf4j.model.Statement
 import org.eclipse.rdf4j.model.Value
 import org.eclipse.rdf4j.repository.RepositoryConnection
+import org.rdfk.statement
 
 class ConnectionStatementBatch(
-    val delegate: RepositoryConnection,
-    val batchSize: Int
+    private val delegate: RepositoryConnection,
+    private val batchSize: Int
 ) : AutoCloseable {
 
     private val statements = mutableListOf<Statement>()
 
     fun add(s: Resource, p: IRI, o: Value, graph: IRI? = null) {
         add(statement(s, p, o, graph))
+    }
+
+    fun add(statements: Collection<Statement>) {
+        statements.forEach { statement: Statement ->
+            add(statement)
+        }
     }
 
     fun add(statement: Statement) {

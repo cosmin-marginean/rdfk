@@ -2,7 +2,9 @@ package org.rdfk
 
 import org.eclipse.rdf4j.rio.RDFFormat
 import org.eclipse.rdf4j.rio.RDFWriterRegistry
+import java.io.BufferedReader
 import java.io.InputStream
+import java.io.InputStreamReader
 
 fun fileRdfFormat(fileName: String): RDFFormat? {
     return RDFFormat.matchFileName(fileName, RDFWriterRegistry.getInstance().keys).orElse(null)
@@ -11,4 +13,9 @@ fun fileRdfFormat(fileName: String): RDFFormat? {
 internal fun resourceAsInput(classpathLocation: String): InputStream {
     val classLoader = Thread.currentThread().contextClassLoader
     return classLoader.getResourceAsStream(classpathLocation)
+}
+
+fun resourceAsString(classpathLocation: String): String {
+    return resourceAsInput(classpathLocation)
+        .use { BufferedReader(InputStreamReader(it)).readText() }
 }

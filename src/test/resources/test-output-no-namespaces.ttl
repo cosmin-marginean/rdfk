@@ -1,0 +1,18 @@
+
+<http://test1.com/one> <http://test2.com/hasName> "John Smith" .
+
+<http://test1.com/two> <http://test2.com/hasName> "Jane Smith";
+  <http://test2.com/hasAge> "23"^^<http://www.w3.org/2001/XMLSchema#int> .
+
+<http://test1.com/three> <http://test2.com/hasName> "Angela White";
+  <http://test2.com/hasWeight> 3.23412E0;
+  <http://test2.com/hasHeight> 13.12938015;
+  <http://test2.com/isEmployed> true;
+  <http://test2.com/lastChecked> "2001-12-17T16:51:14.691Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://test2.com/recordTimestamp> "2002-04-02T09:51:14.721"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <http://test2.com/modifiedDate> "2021-06-29"^^<http://www.w3.org/2001/XMLSchema#date>;
+  <http://test2.com/createdDate> "1983-11-04T12:33:55.002Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+
+<http://test1.com/x> <http://test1.com/name> "Tom" .
+
+<http://test1.com/y> <http://test1.com/name> "Jane" .

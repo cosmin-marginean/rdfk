@@ -1,17 +1,13 @@
 package org.rdfk
 
 import org.eclipse.rdf4j.model.IRI
-import org.eclipse.rdf4j.model.Namespace
 import org.eclipse.rdf4j.model.Statement
-import org.eclipse.rdf4j.model.vocabulary.XSD
 import org.eclipse.rdf4j.rio.RDFFormat
 import org.eclipse.rdf4j.rio.RDFWriter
 import org.testcontainers.shaded.org.apache.commons.io.output.ByteArrayOutputStream
 import org.testng.Assert.assertEquals
 import org.testng.annotations.Test
-import java.io.BufferedReader
 import java.io.File
-import java.io.InputStreamReader
 import java.time.Instant
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -22,7 +18,7 @@ class RioWriterTest {
     @Test
     fun `use file rdf writer`() {
         val outputFile = File(UUID.randomUUID().toString())
-        outputFile.useRdfWriter(RDFFormat.TURTLE, namespaces) { rdfWriter ->
+        outputFile.useRdfWriter(RDFFormat.TURTLE, TEST_NAMESPACES) { rdfWriter ->
             writeStatements(rdfWriter)
         }
         assertEquals(outputFile.readText(), resourceAsString("test-output.ttl"))
@@ -30,18 +26,37 @@ class RioWriterTest {
     }
 
     @Test
+    fun `use file rdf writer - no namespaces`() {
+        val outputFile = File(UUID.randomUUID().toString())
+        outputFile.useRdfWriter(RDFFormat.TURTLE) { rdfWriter ->
+            writeStatements(rdfWriter)
+        }
+        assertEquals(outputFile.readText(), resourceAsString("test-output-no-namespaces.ttl"))
+        outputFile.delete()
+    }
+
+    @Test
     fun `use outputstream rdf writer`() {
         val outputStream = ByteArrayOutputStream()
-        outputStream.useRdfWriter(RDFFormat.TURTLE, namespaces) { rdfWriter ->
+        outputStream.useRdfWriter(RDFFormat.TURTLE, TEST_NAMESPACES) { rdfWriter ->
             writeStatements(rdfWriter)
         }
         assertEquals(String(outputStream.toByteArray()), resourceAsString("test-output.ttl"))
     }
 
     @Test
+    fun `use outputstream rdf writer - no namespaces`() {
+        val outputStream = ByteArrayOutputStream()
+        outputStream.useRdfWriter(RDFFormat.TURTLE) { rdfWriter ->
+            writeStatements(rdfWriter)
+        }
+        assertEquals(String(outputStream.toByteArray()), resourceAsString("test-output-no-namespaces.ttl"))
+    }
+
+    @Test
     fun `use graph`() {
         val outputFile = File(UUID.randomUUID().toString())
-        outputFile.useRdfWriter(RDFFormat.TRIG, namespaces) { rdfWriter ->
+        outputFile.useRdfWriter(RDFFormat.TRIG, TEST_NAMESPACES) { rdfWriter ->
             writeStatements(rdfWriter, T1.iri("test-graph"))
         }
         assertEquals(
@@ -79,20 +94,4 @@ class RioWriterTest {
             statement(T1.iri("y"), T1.iri("name"), "Jane".literal())
         ).writeTo(rdfWriter)
     }
-
-    companion object {
-        val T1 = "http://test1.com/".namespace("t1")
-        val T2 = "http://test2.com/".namespace("t2")
-
-        val namespaces = listOf<Namespace>(
-            T1,
-            T2,
-            XSD.NS
-        )
-    }
-}
-
-fun resourceAsString(classpathLocation: String): String {
-    return resourceAsInput(classpathLocation)
-        .use { BufferedReader(InputStreamReader(it)).readText() }
 }
