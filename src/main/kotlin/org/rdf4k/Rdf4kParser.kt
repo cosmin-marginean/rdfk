@@ -1,11 +1,11 @@
-package org.rdfk
+package org.rdf4k
 
 import org.eclipse.rdf4j.rio.RDFFormat
 import org.eclipse.rdf4j.rio.RDFHandler
 import org.eclipse.rdf4j.rio.Rio
 import java.io.InputStream
 
-class RdfkParser(
+class Rdf4kParser(
     val inputstream: InputStream,
     val format: RDFFormat,
     val rdfHandler: RDFHandler

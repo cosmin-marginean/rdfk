@@ -1,6 +1,5 @@
-package org.rdfk
+package org.rdf4k
 
-import org.rdfk.repository.createIfNotPresent
 import org.testng.annotations.Test
 import java.util.*
 import kotlin.test.assertFalse

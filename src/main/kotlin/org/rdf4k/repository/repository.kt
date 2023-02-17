@@ -1,15 +1,15 @@
-package org.rdfk.repository
+package org.rdf4k.repository
 
 import org.eclipse.rdf4j.model.Model
 import org.eclipse.rdf4j.repository.Repository
 import org.eclipse.rdf4j.repository.config.RepositoryConfig
 import org.eclipse.rdf4j.repository.manager.RepositoryManager
-import org.rdfk.iri
-import org.rdfk.literal
-import org.rdfk.statement
+import org.rdf4k.iri
+import org.rdf4k.literal
+import org.rdf4k.statement
 import org.slf4j.LoggerFactory
 
-private val log = LoggerFactory.getLogger("org.rdfk.repository")
+private val log = LoggerFactory.getLogger("org.rdf4k.repository")
 
 fun RepositoryManager.createIfNotPresent(repositoryId: String, bootstrapModel: Model): Boolean {
     return if (hasRepositoryConfig(repositoryId)) {

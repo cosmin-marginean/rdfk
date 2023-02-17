@@ -1,10 +1,10 @@
-package org.rdfk
+package org.rdf4k
 
 import org.eclipse.rdf4j.repository.Repository
 import org.eclipse.rdf4j.repository.manager.RemoteRepositoryManager
 import org.eclipse.rdf4j.repository.manager.RepositoryManager
-import org.rdfk.repository.createIfNotPresent
-import org.rdfk.repository.replaceRepositoryId
+import org.rdf4k.repository.createIfNotPresent
+import org.rdf4k.repository.replaceRepositoryId
 import org.slf4j.LoggerFactory
 import org.testcontainers.containers.GenericContainer
 import org.testng.annotations.AfterSuite
@@ -25,7 +25,7 @@ abstract class RdfContainerTest {
     fun beforeMethod() {
         repositoryManager = RemoteRepositoryManager(ContainerState.repositoryUrl)
         repositoryManager.init()
-        val repositoryId = "rdfk-${UUID.randomUUID()}"
+        val repositoryId = "rdf4k-${UUID.randomUUID()}"
         createRepository(repositoryId)
         repository = repositoryManager.getRepository(repositoryId)
     }

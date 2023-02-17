@@ -1,8 +1,8 @@
-package org.rdfk
+package org.rdf4k
 
-import org.rdfk.query.*
-import org.rdfk.repository.useBatch
-import org.rdfk.repository.useConnectionBatch
+import org.rdf4k.query.*
+import org.rdf4k.repository.useBatch
+import org.rdf4k.repository.useConnectionBatch
 import org.testng.Assert.assertEquals
 import org.testng.Assert.assertFalse
 import org.testng.annotations.Test

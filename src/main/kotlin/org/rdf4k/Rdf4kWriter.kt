@@ -1,11 +1,11 @@
-package org.rdfk
+package org.rdf4k
 
 import org.eclipse.rdf4j.model.Namespace
 import org.eclipse.rdf4j.rio.RDFFormat
 import org.eclipse.rdf4j.rio.Rio
 import java.io.OutputStream
 
-class RdfkWriter(
+class Rdf4kWriter(
     val format: RDFFormat,
     val outputStream: OutputStream,
     val namespaces: List<Namespace> = emptyList()

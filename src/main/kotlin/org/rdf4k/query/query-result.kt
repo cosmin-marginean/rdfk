@@ -1,4 +1,4 @@
-package org.rdfk.query
+package org.rdf4k.query
 
 import org.eclipse.rdf4j.model.IRI
 import org.eclipse.rdf4j.query.BindingSet

@@ -1,4 +1,4 @@
-package org.rdfk
+package org.rdf4k
 
 import org.eclipse.rdf4j.model.Namespace
 import org.eclipse.rdf4j.model.vocabulary.XSD

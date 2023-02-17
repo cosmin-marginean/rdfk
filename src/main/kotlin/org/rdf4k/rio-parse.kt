@@ -1,4 +1,4 @@
-package org.rdfk
+package org.rdf4k
 
 import org.eclipse.rdf4j.model.Model
 import org.eclipse.rdf4j.model.Statement
@@ -11,8 +11,8 @@ import java.io.InputStream
 
 fun InputStream.parseRdf(format: RDFFormat, rdfHandler: RDFHandler) {
     this.use { inputStream ->
-        RdfkParser(inputStream, format, rdfHandler).use { rdfkParser ->
-            rdfkParser.parse()
+        Rdf4kParser(inputStream, format, rdfHandler).use { rdf4kParser ->
+            rdf4kParser.parse()
         }
     }
 }

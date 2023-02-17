@@ -1,4 +1,4 @@
-package org.rdfk
+package org.rdf4k
 
 import org.eclipse.rdf4j.model.IRI
 import org.eclipse.rdf4j.model.Namespace
@@ -38,8 +38,8 @@ fun OutputStream.useRdfWriter(
     use: (RDFWriter) -> Unit
 ) {
     this.use { outputStream ->
-        RdfkWriter(format, outputStream, namespaces).use { rdfkWriter ->
-            use(rdfkWriter.rdfWriter)
+        Rdf4kWriter(format, outputStream, namespaces).use { rdf4kWriter ->
+            use(rdf4kWriter.rdfWriter)
         }
     }
 }

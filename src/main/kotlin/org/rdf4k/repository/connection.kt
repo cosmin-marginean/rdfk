@@ -1,10 +1,10 @@
-package org.rdfk.repository
+package org.rdf4k.repository
 
 import org.eclipse.rdf4j.model.IRI
 import org.eclipse.rdf4j.model.Resource
 import org.eclipse.rdf4j.model.Value
 import org.eclipse.rdf4j.repository.RepositoryConnection
-import org.rdfk.statement
+import org.rdf4k.statement
 
 fun RepositoryConnection.add(s: Resource, p: IRI, o: Value, graph: IRI? = null) {
     this.add(statement(s, p, o, graph))

@@ -1,6 +1,6 @@
-# RDF with Kotlin
+# RDF4K
 
-![Coveralls](https://img.shields.io/coverallsCoverage/github/cosmin-marginean/rdfk)
+![Coveralls](https://img.shields.io/coverallsCoverage/github/cosmin-marginean/rdf4k)
 
 A Kotlin library for working with RDF. It uses [RDF4J](https://rdf4j.org/) internally
 and the design is largely based on extension functions, providing a more fluent and functional approach.
@@ -33,7 +33,7 @@ outputFile.outputStream().use { outputStream ->
 }
 ```
 
-#### With RDFK
+#### With RDF4K
 ```kotlin
 val N1 = "http://test1.com/".namespace("t1")
 val N2 = "http://test2.com/".namespace("t2")
