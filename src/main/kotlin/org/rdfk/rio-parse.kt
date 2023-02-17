@@ -17,8 +17,10 @@ fun InputStream.parseRdf(format: RDFFormat, rdfHandler: RDFHandler) {
     }
 }
 
-fun InputStream.parseRdfIndexed(format: RDFFormat, handler: (index: Long, statement: Statement) -> Unit) {
-    parseRdf(format, IndexedStatementHandler(handler))
+fun InputStream.parseRdfIndexed(format: RDFFormat, handler: (index: Long, statement: Statement) -> Unit): Long {
+    val rdfHandler = IndexedStatementHandler(handler)
+    parseRdf(format, rdfHandler)
+    return rdfHandler.statementCount
 }
 
 fun InputStream.toRdfStatements(format: RDFFormat): Collection<Statement> {
@@ -40,8 +42,10 @@ fun File.parseRdf(format: RDFFormat, rdfHandler: RDFHandler) {
     }
 }
 
-fun File.parseRdfIndexed(format: RDFFormat, handler: (index: Long, statement: Statement) -> Unit) {
-    parseRdf(format, IndexedStatementHandler(handler))
+fun File.parseRdfIndexed(format: RDFFormat, handler: (index: Long, statement: Statement) -> Unit): Long {
+    val rdfHandler = IndexedStatementHandler(handler)
+    parseRdf(format, rdfHandler)
+    return rdfHandler.statementCount
 }
 
 fun File.toRdfStatements(format: RDFFormat = fileRdfFormat(this.name)!!): Collection<Statement> {

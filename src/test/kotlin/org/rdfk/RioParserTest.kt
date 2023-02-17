@@ -23,9 +23,10 @@ class RioParserTest {
     @Test
     fun `parse inputstream indexed`() {
         val indices = mutableListOf<Long>()
-        resourceAsInput("test-input.ttl").parseRdfIndexed(RDFFormat.TURTLE) { index, statement ->
+        val count = resourceAsInput("test-input.ttl").parseRdfIndexed(RDFFormat.TURTLE) { index, statement ->
             indices.add(index)
         }
+        assertEquals(count, 17)
         val expected: List<Long> = (0L..17L).toList()
         assertContentEquals(indices, expected)
     }
@@ -33,9 +34,10 @@ class RioParserTest {
     @Test
     fun `parse file indexed`() {
         val indices = mutableListOf<Long>()
-        File("src/test/resources/test-input.ttl").parseRdfIndexed(RDFFormat.TURTLE) { index, statement ->
+        val count = File("src/test/resources/test-input.ttl").parseRdfIndexed(RDFFormat.TURTLE) { index, statement ->
             indices.add(index)
         }
+        assertEquals(count, 17)
         val expected: List<Long> = (0L..17L).toList()
         assertContentEquals(indices, expected)
     }
