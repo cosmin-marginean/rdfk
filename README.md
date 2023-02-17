@@ -1,4 +1,3 @@
 # rdfk
 
-[![Coverage Status](https://coveralls.io/repos/github/cosmin-marginean/rdfk/badge.svg?branch=main)](https://coveralls.io/github/cosmin-marginean/rdfk?branch=main)
-
+![Coveralls](https://img.shields.io/coverallsCoverage/github/cosmin-marginean/rdfk)
