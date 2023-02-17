@@ -26,7 +26,7 @@ class RioParserTest {
         val count = resourceAsInput("test-input.ttl").parseRdfIndexed(RDFFormat.TURTLE) { index, statement ->
             indices.add(index)
         }
-        assertEquals(count, 17)
+        assertEquals(count, 18)
         val expected: List<Long> = (0L..17L).toList()
         assertContentEquals(indices, expected)
     }
@@ -37,7 +37,7 @@ class RioParserTest {
         val count = File("src/test/resources/test-input.ttl").parseRdfIndexed(RDFFormat.TURTLE) { index, statement ->
             indices.add(index)
         }
-        assertEquals(count, 17)
+        assertEquals(count, 18)
         val expected: List<Long> = (0L..17L).toList()
         assertContentEquals(indices, expected)
     }
