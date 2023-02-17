@@ -1,6 +1,7 @@
 # RDF4K
 
 ![Coveralls](https://img.shields.io/coverallsCoverage/github/cosmin-marginean/rdf4k)
+[![](https://img.shields.io/github/v/release/cosmin-marginean/rdf4k?display_name=tag)](https://github.com/cosmin-marginean/rdf4k/releases)
 
 A Kotlin library for working with RDF. It uses [RDF4J](https://rdf4j.org/) internally
 and the design is largely based on extension functions, providing a more fluent and functional approach.
