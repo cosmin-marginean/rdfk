@@ -42,3 +42,16 @@ outputFile.useRdfWriter(RDFFormat.TURTLE, listOf(N1, N2)) { rdfWriter ->
     rdfWriter.write(N1.iri("two"), N2.iri("name"), "Angela Smith".literal())
 }
 ```
+
+## Usage
+```groovy
+repositories {
+    maven {
+        url "https://resoluteworks-maven.s3-eu-west-1.amazonaws.com"
+    }
+}
+
+dependencies {
+    implementation "org.rdf4k:rdf4k:0.9.0"
+}
+```
