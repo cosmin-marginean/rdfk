@@ -56,7 +56,7 @@ class ExamplesDetailed : RdfContainerTest() {
             connection.prepareTupleQuery("SELECT ?s ?p ?o WHERE { ?s ?p ?o . }")
                 .bindings("s" to NAMESPACE_RES.iri("one"))
                 .evaluate()
-                .forEach { row->
+                .forEach { row ->
                     println(row.iri("p"))
                     println(row.str("o"))
                 }
