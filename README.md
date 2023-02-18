@@ -53,7 +53,7 @@ repositories {
 }
 
 dependencies {
-    implementation "org.rdf4k:rdf4k:0.9.0"
+    implementation "io.resoluteworks:rdf4k:0.9.0"
 }
 ```
 
