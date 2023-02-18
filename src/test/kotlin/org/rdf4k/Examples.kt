@@ -41,9 +41,9 @@ class Examples : RdfContainerTest() {
 
         val RES = "http://test.com/res/".namespace("res")
         val DEFS = "http://test.com/defs/".namespace("defs")
-        outputFile.useRdfWriter(RDFFormat.TURTLE, listOf(T1, T2)) { rdfWriter ->
-            rdfWriter.write(T1.iri("one"), T2.iri("name"), "John Smith".literal())
-            rdfWriter.write(T1.iri("two"), T2.iri("name"), "Angela Smith".literal())
+        outputFile.useRdfWriter(RDFFormat.TURTLE, listOf(RES, DEFS)) { rdfWriter ->
+            rdfWriter.write(RES.iri("one"), DEFS.iri("name"), "John Smith".literal())
+            rdfWriter.write(RES.iri("two"), DEFS.iri("name"), "Angela Smith".literal())
         }
     }
 

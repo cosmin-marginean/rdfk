@@ -38,9 +38,9 @@ outputFile.outputStream().use { outputStream ->
 ```kotlin
 val RES = "http://test.com/res/".namespace("res")
 val DEFS = "http://test.com/defs/".namespace("defs")
-outputFile.useRdfWriter(RDFFormat.TURTLE, listOf(T1, T2)) { rdfWriter ->
-    rdfWriter.write(T1.iri("one"), T2.iri("name"), "John Smith".literal())
-    rdfWriter.write(T1.iri("two"), T2.iri("name"), "Angela Smith".literal())
+outputFile.useRdfWriter(RDFFormat.TURTLE, listOf(RES, DEFS)) { rdfWriter ->
+    rdfWriter.write(RES.iri("one"), DEFS.iri("name"), "John Smith".literal())
+    rdfWriter.write(RES.iri("two"), DEFS.iri("name"), "Angela Smith".literal())
 }
 ```
 
@@ -58,6 +58,10 @@ dependencies {
 ```
 
 ## Examples
+
+For more details please check [examples](https://github.com/cosmin-marginean/rdf4k/blob/main/src/test/kotlin/org/rdf4k/ExamplesDetailed.kt)
+and [docs](https://cosmin-marginean.github.io/rdf4k/dokka/rdf4k/)
+
 ### Reading RDF
 ```kotlin
 // Read an RDF file
