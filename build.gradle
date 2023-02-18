@@ -1,6 +1,7 @@
 plugins {
     id "java-library"
     id "maven-publish"
+    id "signing"
     id "jacoco"
     id "com.glovoapp.semantic-versioning" version "1.1.10"
     id "org.jetbrains.kotlin.jvm" version "${kotlinVersion}"
@@ -12,6 +13,16 @@ group = "io.resoluteworks"
 
 repositories {
     mavenCentral()
+}
+
+java {
+    withJavadocJar()
+}
+
+javadocJar {
+    dependsOn(dokkaHtml)
+    archiveClassifier.set("javadoc")
+    from(dokkaHtml.outputDirectory)
 }
 
 configurations.all {
@@ -67,19 +78,45 @@ dokkaHtml {
 publishing {
     repositories {
         mavenLocal()
-        maven {
-            url = "s3://resoluteworks-maven"
-            credentials(AwsCredentials) {
-                accessKey = System.env.AWS_ACCESS_KEY_ID
-                secretKey = System.env.AWS_SECRET_ACCESS_KEY
+//        maven {
+//            url = "s3://resoluteworks-maven"
+//            credentials(AwsCredentials) {
+//                accessKey = System.env.AWS_ACCESS_KEY_ID
+//                secretKey = System.env.AWS_SECRET_ACCESS_KEY
+//            }
+//        }
+    }
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+            pom {
+                name = 'rdf4k'
+                description = 'A Kotlin library for processing RDF'
+                url = 'https://github.com/cosmin-marginean/rdf4k'
+                licenses {
+                    license {
+                        name = 'Apache License 2.0'
+                        url = 'https://github.com/cosmin-marginean/rdf4k/blob/main/LICENSE'
+                        distribution = 'repo'
+                    }
+                }
+                scm {
+                    url = 'https://github.com/cosmin-marginean/rdf4k'
+                    connection = 'scm:git:git://github.com/cosmin-marginean/rdf4k.git'
+                    developerConnection = 'scm:git:ssh://git@github.com:cosmin-marginean/rdf4k.git'
+                }
+                developers {
+                    developer {
+                        name = 'Cosmin Marginean'
+                    }
+                }
             }
         }
     }
-    publications {
-        jar(MavenPublication) {
-            from components.java
-        }
-    }
+}
+
+signing {
+    sign publishing.publications.mavenJava
 }
 
 task fullBuild {
