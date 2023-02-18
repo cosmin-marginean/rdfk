@@ -17,6 +17,7 @@ repositories {
 
 java {
     withJavadocJar()
+    withSourcesJar()
 }
 
 javadocJar {
@@ -76,16 +77,6 @@ dokkaHtml {
 }
 
 publishing {
-    repositories {
-        mavenLocal()
-//        maven {
-//            url = "s3://resoluteworks-maven"
-//            credentials(AwsCredentials) {
-//                accessKey = System.env.AWS_ACCESS_KEY_ID
-//                secretKey = System.env.AWS_SECRET_ACCESS_KEY
-//            }
-//        }
-    }
     publications {
         mavenJava(MavenPublication) {
             from components.java
@@ -110,6 +101,16 @@ publishing {
                         name = 'Cosmin Marginean'
                     }
                 }
+            }
+        }
+    }
+    repositories {
+        mavenLocal()
+        maven {
+            url = 'https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/'
+            credentials {
+                username = "${NEXUS_USERNAME}"
+                password = "${NEXUS_PASSWORD}"
             }
         }
     }

@@ -46,14 +46,8 @@ outputFile.useRdfWriter(RDFFormat.TURTLE, listOf(RES, DEFS)) { rdfWriter ->
 
 ## Usage
 ```groovy
-repositories {
-    maven {
-        url "https://resoluteworks-maven.s3-eu-west-1.amazonaws.com"
-    }
-}
-
 dependencies {
-    implementation "io.resoluteworks:rdf4k:0.9.0"
+    implementation "io.resoluteworks:rdf4k:0.9.3"
 }
 ```
 
