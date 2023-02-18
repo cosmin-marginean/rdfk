@@ -87,7 +87,7 @@ File("input.ttl").useRdfWriter(RDFFormat.TURTLE, listOf(RES, DEFS)) { rdfWriter 
 }
 ```
 
-### RDF Repository connection
+### RDF Repository
 ```kotlin
 // Write statements to an RDF repository connection in batches 
 repository.useConnectionBatch(10_000) { batch ->
