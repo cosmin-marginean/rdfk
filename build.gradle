@@ -8,7 +8,7 @@ plugins {
     id "com.github.nbaztec.coveralls-jacoco" version "1.2.15"
 }
 
-group = "org.rdf4k"
+group = "io.resoluteworks"
 
 repositories {
     mavenCentral()
