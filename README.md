@@ -8,26 +8,26 @@ and the design is largely based on extension functions, providing a more fluent 
 
 #### With native RDF4J
 ```kotlin
-val T1 = "http://test1.com/"
-val T2 = "http://test2.com/"
+val RES = "http://test.com/res/"
+val DEFS = "http://test.com/defs/"
 val valueFactory = SimpleValueFactory.getInstance()
 outputFile.outputStream().use { outputStream ->
     val rdfWriter = Rio.createWriter(RDFFormat.TURTLE, outputStream)
     rdfWriter.startRDF()
-    rdfWriter.handleNamespace("t1", T1)
-    rdfWriter.handleNamespace("t2", T2)
+    rdfWriter.handleNamespace("res", RES)
+    rdfWriter.handleNamespace("defs", DEFS)
     rdfWriter.handleStatement(
         valueFactory.createStatement(
-            valueFactory.createIRI(T1, "one"),
-            valueFactory.createIRI(T2, "name"),
+            valueFactory.createIRI(RES, "one"),
+            valueFactory.createIRI(DEFS, "name"),
             valueFactory.createLiteral("John Smith")
         )
     )
     rdfWriter.handleStatement(
         valueFactory.createStatement(
-            valueFactory.createIRI(T1, "two"),
-            valueFactory.createIRI(T2, "name"),
-            valueFactory.createLiteral("Angela Smith")
+            valueFactory.createIRI(RES, "two"),
+            valueFactory.createIRI(DEFS, "name"),
+            valueFactory.createLiteral("Angela White")
         )
     )
     rdfWriter.endRDF()
@@ -36,11 +36,11 @@ outputFile.outputStream().use { outputStream ->
 
 #### With RDF4K
 ```kotlin
-val N1 = "http://test1.com/".namespace("t1")
-val N2 = "http://test2.com/".namespace("t2")
-outputFile.useRdfWriter(RDFFormat.TURTLE, listOf(N1, N2)) { rdfWriter ->
-    rdfWriter.write(N1.iri("one"), N2.iri("name"), "John Smith".literal())
-    rdfWriter.write(N1.iri("two"), N2.iri("name"), "Angela Smith".literal())
+val RES = "http://test.com/res/".namespace("res")
+val DEFS = "http://test.com/defs/".namespace("defs")
+outputFile.useRdfWriter(RDFFormat.TURTLE, listOf(T1, T2)) { rdfWriter ->
+    rdfWriter.write(T1.iri("one"), T2.iri("name"), "John Smith".literal())
+    rdfWriter.write(T1.iri("two"), T2.iri("name"), "Angela Smith".literal())
 }
 ```
 
@@ -54,5 +54,62 @@ repositories {
 
 dependencies {
     implementation "org.rdf4k:rdf4k:0.9.0"
+}
+```
+
+## Examples
+### Reading RDF
+```kotlin
+// Read an RDF file
+File("input.ttl").parseRdfIndexed(RDFFormat.TURTLE) { index, statement ->
+    println(statement)
+}
+
+// Read input stream with custom RDF handler
+val myRdfHandler = object : AbstractRDFHandler() {
+    override fun handleStatement(st: Statement) {
+        println(st)
+    }
+}
+inputStream.parseRdf(RDFFormat.TURTLE, myRdfHandler)
+```
+
+### Writing RDF
+```kotlin
+val RES = "http://test.com/res/".namespace("res")
+val DEFS = "http://test.com/defs/".namespace("defs")
+File("input.ttl").useRdfWriter(RDFFormat.TURTLE, listOf(RES, DEFS)) { rdfWriter ->
+    val statements = mutableListOf<Statement>()
+    statements.add(RES.iri("one"), DEFS.iri("name"), "John Smith".literal())
+    statements.add(RES.iri("two"), DEFS.iri("name"), "Angela Smith".literal())
+    statements.add(RES.iri("two"), DEFS.iri("age"), 23.literal())
+    rdfWriter.write(statements)
+}
+```
+
+### RDF Repository connection
+```kotlin
+// Write statements to an RDF repository connection in batches 
+repository.useConnectionBatch(10_000) { batch ->
+    batch.add(resourceToRdfModel("input.ttl"))
+}
+
+// Querying
+repository.connection.use { connection ->
+    connection.prepareTupleQuery("SELECT ?s ?p ?o WHERE { ?s ?p ?o . }")
+        .bindings("s" to NAMESPACE_RES.iri("one"))
+        .evaluate()
+        .forEach { row->
+            println(row.iri("p"))
+            println(row.str("o"))
+        }
+        
+}
+
+// Querying using a .sparql from classpath
+repository.connection.use { connection ->
+    connection.prepareTupleQueryClasspath("queries/query.sparql")
+        .bindings("s" to NAMESPACE_RES.iri("one"))
+        .evaluate()
 }
 ```
