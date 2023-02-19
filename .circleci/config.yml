@@ -1,0 +1,21 @@
+version: 2.1
+
+executors:
+  openjdk17:
+    docker:
+      - image: cimg/openjdk:17.0
+
+jobs:
+  test:
+    machine: true
+    steps:
+      - checkout
+      - run: ./gradlew clean test
+      - store_artifacts:
+          path: build/reports/tests/test
+          destination: test-reports
+
+workflows:
+  test:
+    jobs:
+      - test
