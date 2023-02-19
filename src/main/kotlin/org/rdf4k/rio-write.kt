@@ -27,18 +27,20 @@ fun Collection<Statement>.writeTo(writer: RDFWriter) {
 fun File.useRdfWriter(
     format: RDFFormat,
     namespaces: List<Namespace> = emptyList(),
+    bufferSize: Int = 8192,
     use: (RDFWriter) -> Unit
 ) {
-    outputStream().useRdfWriter(format, namespaces, use)
+    outputStream().useRdfWriter(format, namespaces, bufferSize, use)
 }
 
 fun OutputStream.useRdfWriter(
     format: RDFFormat,
     namespaces: List<Namespace> = emptyList(),
+    bufferSize: Int = 8192,
     use: (RDFWriter) -> Unit
 ) {
     this.use { outputStream ->
-        Rdf4kWriter(format, outputStream, namespaces).use { rdf4kWriter ->
+        Rdf4kWriter(format, outputStream, namespaces, bufferSize).use { rdf4kWriter ->
             use(rdf4kWriter.rdfWriter)
         }
     }

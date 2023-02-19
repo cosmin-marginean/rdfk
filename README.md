@@ -47,7 +47,7 @@ outputFile.useRdfWriter(RDFFormat.TURTLE, listOf(RES, DEFS)) { rdfWriter ->
 ## Usage
 ```groovy
 dependencies {
-    implementation "io.resoluteworks:rdf4k:0.9.4"
+    implementation "io.resoluteworks:rdf4k:0.9.5"
 }
 ```
 
