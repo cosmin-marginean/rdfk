@@ -63,7 +63,8 @@ $dokka.location:org.rdf4k/Rdf4kParser/inputstream/#/PointingToDeclaration/rdf4k
 $dokka.location:org.rdf4k/Rdf4kParser/rdfHandler/#/PointingToDeclaration/rdf4k/org.rdf4k/-rdf4k-parser/rdf-handler.html
 $dokka.location:org.rdf4k/Rdf4kParser/rdfParser/#/PointingToDeclaration/rdf4k/org.rdf4k/-rdf4k-parser/rdf-parser.html
 $dokka.location:org.rdf4k/Rdf4kWriter///PointingToDeclaration/rdf4k/org.rdf4k/-rdf4k-writer/index.html
-$dokka.location:org.rdf4k/Rdf4kWriter/Rdf4kWriter/#org.eclipse.rdf4j.rio.RDFFormat#java.io.OutputStream#kotlin.collections.List[org.eclipse.rdf4j.model.Namespace]/PointingToDeclaration/rdf4k/org.rdf4k/-rdf4k-writer/-rdf4k-writer.html
+$dokka.location:org.rdf4k/Rdf4kWriter/Rdf4kWriter/#org.eclipse.rdf4j.rio.RDFFormat#java.io.OutputStream#kotlin.collections.List[org.eclipse.rdf4j.model.Namespace]#kotlin.Int/PointingToDeclaration/rdf4k/org.rdf4k/-rdf4k-writer/-rdf4k-writer.html
+$dokka.location:org.rdf4k/Rdf4kWriter/bufferSize/#/PointingToDeclaration/rdf4k/org.rdf4k/-rdf4k-writer/buffer-size.html
 $dokka.location:org.rdf4k/Rdf4kWriter/close/#/PointingToDeclaration/rdf4k/org.rdf4k/-rdf4k-writer/close.html
 $dokka.location:org.rdf4k/Rdf4kWriter/format/#/PointingToDeclaration/rdf4k/org.rdf4k/-rdf4k-writer/format.html
 $dokka.location:org.rdf4k/Rdf4kWriter/namespaces/#/PointingToDeclaration/rdf4k/org.rdf4k/-rdf4k-writer/namespaces.html
