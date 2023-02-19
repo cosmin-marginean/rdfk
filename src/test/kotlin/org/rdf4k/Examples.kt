@@ -29,7 +29,7 @@ class Examples : RdfContainerTest() {
                 valueFactory.createStatement(
                     valueFactory.createIRI(RES, "two"),
                     valueFactory.createIRI(DEFS, "name"),
-                    valueFactory.createLiteral("Angela White")
+                    valueFactory.createLiteral("Angela Smith")
                 )
             )
             rdfWriter.endRDF()

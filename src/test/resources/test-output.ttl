@@ -7,7 +7,7 @@ t1:one t2:hasName "John Smith" .
 t1:two t2:hasName "Jane Smith";
   t2:hasAge "23"^^xsd:int .
 
-t1:three t2:hasName "Angela White";
+t1:three t2:hasName "Angela Smith";
   t2:hasWeight 3.23412E0;
   t2:hasHeight 13.12938015;
   t2:isEmployed true;

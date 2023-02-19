@@ -80,7 +80,7 @@ class RioWriterTest {
         statements.add(T1.iri("two"), T2.iri("hasAge"), 23.literal(), graph)
         rdfWriter.write(statements)
 
-        rdfWriter.write(T1.iri("three"), T2.iri("hasName"), "Angela White".literal())
+        rdfWriter.write(T1.iri("three"), T2.iri("hasName"), "Angela Smith".literal())
         rdfWriter.write(T1.iri("three"), T2.iri("hasWeight"), 3.23412.literal())
         rdfWriter.write(T1.iri("three"), T2.iri("hasHeight"), 13.12938015.literalDecimal())
         rdfWriter.write(T1.iri("three"), T2.iri("isEmployed"), true.literal())
