@@ -2,7 +2,7 @@ package org.rdf4k
 
 import org.rdf4k.query.*
 import org.rdf4k.repository.useBatch
-import org.rdf4k.repository.useConnectionBatch
+import org.rdf4k.repository.withStatementsBatch
 import org.testng.Assert.assertEquals
 import org.testng.Assert.assertFalse
 import org.testng.annotations.Test
@@ -11,7 +11,7 @@ class ConnectionTest : RdfContainerTest() {
 
     @Test
     fun `repository use batch`() {
-        repository.useConnectionBatch(10) { batch ->
+        repository.withStatementsBatch(10) { batch ->
             batch.add(resourceToRdfModel("test-input.ttl"))
         }
         val subject = "http://bods.openownership.org/resource/openownership-register-5450813549318202701".iri()
@@ -51,7 +51,7 @@ class ConnectionTest : RdfContainerTest() {
 
     @Test
     fun `add statement to batch`() {
-        repository.useConnectionBatch(10) { batch ->
+        repository.withStatementsBatch(10) { batch ->
             batch.add(T1.iri("one"), T2.iri("name"), "John Smith".literal())
             batch.add(T1.iri("one"), T2.iri("age"), "23".literal())
         }

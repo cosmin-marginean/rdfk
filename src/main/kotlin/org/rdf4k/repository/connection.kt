@@ -10,6 +10,6 @@ fun RepositoryConnection.add(s: Resource, p: IRI, o: Value, graph: IRI? = null) 
     this.add(statement(s, p, o, graph))
 }
 
-fun RepositoryConnection.useBatch(batchSize: Int, use: (ConnectionStatementBatch) -> Unit) {
-    ConnectionStatementBatch(this, batchSize).use(use)
+fun RepositoryConnection.useBatch(batchSize: Int, use: (StatementsBatch) -> Unit) {
+    StatementsBatch(this, batchSize).use(use)
 }

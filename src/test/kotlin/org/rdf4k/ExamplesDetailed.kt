@@ -7,7 +7,7 @@ import org.rdf4k.query.bindings
 import org.rdf4k.query.iri
 import org.rdf4k.query.prepareTupleQueryClasspath
 import org.rdf4k.query.str
-import org.rdf4k.repository.useConnectionBatch
+import org.rdf4k.repository.withStatementsBatch
 import java.io.File
 import java.io.InputStream
 
@@ -47,7 +47,7 @@ class ExamplesDetailed : RdfContainerTest() {
         val NAMESPACE_RES = "http://test.com/".namespace("res")
 
         // Write statements to an RDF repository connection in batches
-        repository.useConnectionBatch(10_000) { batch ->
+        repository.withStatementsBatch(10_000) { batch ->
             batch.add(resourceToRdfModel("input.ttl"))
         }
 
