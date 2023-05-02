@@ -94,21 +94,18 @@ repository.useConnectionBatch(10_000) { batch ->
 }
 
 // Querying
-repository.connection.use { connection ->
-    connection.prepareTupleQuery("SELECT ?s ?p ?o WHERE { ?s ?p ?o . }")
-        .bindings("s" to NAMESPACE_RES.iri("one"))
-        .evaluate()
-        .forEach { row ->
-            println(row.iri("p"))
-            println(row.str("o"))
-        }
-        
+repository.runTupleQuery("SELECT ?s ?p ?o WHERE { ?s ?p ?o . }") {
+    bindings("s" to NAMESPACE_RES.iri("one"))
+}.forEach { row ->
+    println(row.iri("p"))
+    println(row.str("o"))
 }
 
 // Querying using a .sparql from classpath
-repository.connection.use { connection ->
-    connection.prepareTupleQueryClasspath("queries/query.sparql")
-        .bindings("s" to NAMESPACE_RES.iri("one"))
-        .evaluate()
+repository.runTupleQueryClasspath("queries/tuple-query.sparql") {
+    bindings("s" to NAMESPACE_RES.iri("one"))
+}
+repository.runGraphQueryClasspath("queries/graph-query.sparql") {
+    bindings("s" to NAMESPACE_RES.iri("one"))
 }
 ```

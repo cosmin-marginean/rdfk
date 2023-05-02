@@ -19,7 +19,3 @@ inline fun <reified T : Query> T.bindings(bindings: Map<String, Value>): T {
     }
     return this
 }
-
-fun RepositoryConnection.prepareTupleQueryClasspath(classpathLocation: String): TupleQuery {
-    return this.prepareTupleQuery(resourceAsString(classpathLocation))
-}

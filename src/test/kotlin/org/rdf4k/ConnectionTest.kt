@@ -1,6 +1,12 @@
 package org.rdf4k
 
-import org.rdf4k.query.*
+import org.rdf4k.query.bindings
+import org.rdf4k.query.boolean
+import org.rdf4k.query.int
+import org.rdf4k.query.iri
+import org.rdf4k.query.long
+import org.rdf4k.query.str
+import org.rdf4k.repository.runTupleQueryClasspath
 import org.rdf4k.repository.useBatch
 import org.rdf4k.repository.withStatementsBatch
 import org.testng.Assert.assertEquals
@@ -15,11 +21,9 @@ class ConnectionTest : RdfContainerTest() {
             batch.add(resourceToRdfModel("test-input.ttl"))
         }
         val subject = "http://bods.openownership.org/resource/openownership-register-5450813549318202701".iri()
-        val rows = repository.connection.use { connection ->
-            connection.prepareTupleQueryClasspath("input-test-query-1.sparql")
-                .bindings("s" to subject)
-                .evaluate()
-                .toList()
+
+        val rows = repository.runTupleQueryClasspath("input-test-query-1.sparql") {
+            bindings("s" to subject)
         }
         assertEquals(rows.size, 11)
         assertEquals(
@@ -36,11 +40,8 @@ class ConnectionTest : RdfContainerTest() {
             }
         }
         val subject = "http://bods.openownership.org/resource/openownership-register-5450813549318202701".iri()
-        val rows = repository.connection.use { connection ->
-            connection.prepareTupleQueryClasspath("input-test-query-1.sparql")
-                .bindings("s" to subject)
-                .evaluate()
-                .toList()
+        val rows = repository.runTupleQueryClasspath("input-test-query-1.sparql") {
+            bindings("s" to subject)
         }
         assertEquals(rows.size, 11)
         assertEquals(
@@ -55,11 +56,8 @@ class ConnectionTest : RdfContainerTest() {
             batch.add(T1.iri("one"), T2.iri("name"), "John Smith".literal())
             batch.add(T1.iri("one"), T2.iri("age"), "23".literal())
         }
-        val rows = repository.connection.use { connection ->
-            connection.prepareTupleQueryClasspath("input-test-query-1.sparql")
-                .bindings("s" to T1.iri("one"))
-                .evaluate()
-                .toList()
+        val rows = repository.runTupleQueryClasspath("input-test-query-1.sparql") {
+            bindings("s" to T1.iri("one"))
         }
         assertEquals(rows.size, 3)
         assertEquals(
@@ -79,11 +77,8 @@ class ConnectionTest : RdfContainerTest() {
             connection.add(T1.iri("one"), T2.iri("age"), "23".literal())
             connection.add(T1.iri("one"), T2.iri("enabled"), false.literal())
         }
-        val rows = repository.connection.use { connection ->
-            connection.prepareTupleQueryClasspath("input-test-query-1.sparql")
-                .bindings("s" to T1.iri("one"))
-                .evaluate()
-                .toList()
+        val rows = repository.runTupleQueryClasspath("input-test-query-1.sparql") {
+            bindings("s" to T1.iri("one"))
         }
         assertEquals(rows.size, 4)
         assertEquals(

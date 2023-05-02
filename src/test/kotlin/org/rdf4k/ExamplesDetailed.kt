@@ -5,8 +5,10 @@ import org.eclipse.rdf4j.rio.RDFFormat
 import org.eclipse.rdf4j.rio.helpers.AbstractRDFHandler
 import org.rdf4k.query.bindings
 import org.rdf4k.query.iri
-import org.rdf4k.query.prepareTupleQueryClasspath
 import org.rdf4k.query.str
+import org.rdf4k.repository.runGraphQueryClasspath
+import org.rdf4k.repository.runTupleQuery
+import org.rdf4k.repository.runTupleQueryClasspath
 import org.rdf4k.repository.withStatementsBatch
 import java.io.File
 import java.io.InputStream
@@ -52,22 +54,19 @@ class ExamplesDetailed : RdfContainerTest() {
         }
 
         // Querying
-        repository.connection.use { connection ->
-            connection.prepareTupleQuery("SELECT ?s ?p ?o WHERE { ?s ?p ?o . }")
-                .bindings("s" to NAMESPACE_RES.iri("one"))
-                .evaluate()
-                .forEach { row ->
-                    println(row.iri("p"))
-                    println(row.str("o"))
-                }
-
+        repository.runTupleQuery("SELECT ?s ?p ?o WHERE { ?s ?p ?o . }") {
+            bindings("s" to NAMESPACE_RES.iri("one"))
+        }.forEach { row ->
+            println(row.iri("p"))
+            println(row.str("o"))
         }
 
         // Querying using a .sparql from classpath
-        repository.connection.use { connection ->
-            connection.prepareTupleQueryClasspath("queries/query.sparql")
-                .bindings("s" to NAMESPACE_RES.iri("one"))
-                .evaluate()
+        repository.runTupleQueryClasspath("queries/tuple-query.sparql") {
+            bindings("s" to NAMESPACE_RES.iri("one"))
+        }
+        repository.runGraphQueryClasspath("queries/graph-query.sparql") {
+            bindings("s" to NAMESPACE_RES.iri("one"))
         }
     }
 }
