@@ -18,7 +18,7 @@ class ConnectionTest : RdfContainerTest() {
     @Test
     fun `repository use batch`() {
         repository.withStatementsBatch(10) { batch ->
-            batch.add(resourceToRdfModel("test-input.ttl"))
+            batch.add(resourceAsRdfModel("test-input.ttl"))
         }
         val subject = "http://bods.openownership.org/resource/openownership-register-5450813549318202701".iri()
 
@@ -36,7 +36,7 @@ class ConnectionTest : RdfContainerTest() {
     fun `connection use batch`() {
         repository.connection.use { connection ->
             connection.useBatch(10) { batch ->
-                batch.add(resourceToRdfModel("test-input.ttl"))
+                batch.add(resourceAsRdfModel("test-input.ttl"))
             }
         }
         val subject = "http://bods.openownership.org/resource/openownership-register-5450813549318202701".iri()

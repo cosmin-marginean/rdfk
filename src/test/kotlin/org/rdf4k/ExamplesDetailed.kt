@@ -50,7 +50,7 @@ class ExamplesDetailed : RdfContainerTest() {
 
         // Write statements to an RDF repository connection in batches
         repository.withStatementsBatch(10_000) { batch ->
-            batch.add(resourceToRdfModel("input.ttl"))
+            batch.add(resourceAsRdfModel("input.ttl"))
         }
 
         // Querying

@@ -80,7 +80,7 @@ class RioParserTest {
 
     @Test
     fun `resource as model`() {
-        val model = resourceToRdfModel("test-input.ttl")
+        val model = resourceAsRdfModel("test-input.ttl")
         assertStatementsMatch(model)
         assertNamespacesMatch(model.namespaces)
     }

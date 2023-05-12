@@ -43,8 +43,8 @@ $dokka.location:org.rdf4k//parseRdf/java.io.File#org.eclipse.rdf4j.rio.RDFFormat
 $dokka.location:org.rdf4k//parseRdf/java.io.InputStream#org.eclipse.rdf4j.rio.RDFFormat#org.eclipse.rdf4j.rio.RDFHandler/PointingToDeclaration/rdf4k/org.rdf4k/parse-rdf.html
 $dokka.location:org.rdf4k//parseRdfIndexed/java.io.File#org.eclipse.rdf4j.rio.RDFFormat#kotlin.Function2[kotlin.Long,org.eclipse.rdf4j.model.Statement,kotlin.Unit]/PointingToDeclaration/rdf4k/org.rdf4k/parse-rdf-indexed.html
 $dokka.location:org.rdf4k//parseRdfIndexed/java.io.InputStream#org.eclipse.rdf4j.rio.RDFFormat#kotlin.Function2[kotlin.Long,org.eclipse.rdf4j.model.Statement,kotlin.Unit]/PointingToDeclaration/rdf4k/org.rdf4k/parse-rdf-indexed.html
+$dokka.location:org.rdf4k//resourceAsRdfModel/#kotlin.String#org.eclipse.rdf4j.rio.RDFFormat/PointingToDeclaration/rdf4k/org.rdf4k/resource-as-rdf-model.html
 $dokka.location:org.rdf4k//resourceAsString/#kotlin.String/PointingToDeclaration/rdf4k/org.rdf4k/resource-as-string.html
-$dokka.location:org.rdf4k//resourceToRdfModel/#kotlin.String#org.eclipse.rdf4j.rio.RDFFormat/PointingToDeclaration/rdf4k/org.rdf4k/resource-to-rdf-model.html
 $dokka.location:org.rdf4k//statement/#org.eclipse.rdf4j.model.Resource#org.eclipse.rdf4j.model.IRI#org.eclipse.rdf4j.model.Value#org.eclipse.rdf4j.model.IRI?/PointingToDeclaration/rdf4k/org.rdf4k/statement.html
 $dokka.location:org.rdf4k//toRdfModel/java.io.File#org.eclipse.rdf4j.rio.RDFFormat/PointingToDeclaration/rdf4k/org.rdf4k/to-rdf-model.html
 $dokka.location:org.rdf4k//toRdfModel/java.io.InputStream#org.eclipse.rdf4j.rio.RDFFormat/PointingToDeclaration/rdf4k/org.rdf4k/to-rdf-model.html

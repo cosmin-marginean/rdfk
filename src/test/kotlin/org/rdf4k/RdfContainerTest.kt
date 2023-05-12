@@ -31,7 +31,7 @@ abstract class RdfContainerTest {
     }
 
     fun createRepository(repositoryId: String): Boolean {
-        val model = resourceToRdfModel("graphdb-repository.ttl")
+        val model = resourceAsRdfModel("graphdb-repository.ttl")
             .replaceRepositoryId(repositoryId)
         return repositoryManager.createIfNotPresent(repositoryId, model)
     }
