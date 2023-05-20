@@ -9,6 +9,7 @@ $dokka.location:org.rdf4k.query//iri/org.eclipse.rdf4j.query.BindingSet#kotlin.S
 $dokka.location:org.rdf4k.query//long/org.eclipse.rdf4j.query.BindingSet#kotlin.String/PointingToDeclaration/rdf4k/org.rdf4k.query/long.html
 $dokka.location:org.rdf4k.query//str/org.eclipse.rdf4j.query.BindingSet#kotlin.String/PointingToDeclaration/rdf4k/org.rdf4k.query/str.html
 $dokka.location:org.rdf4k.repository////PointingToDeclaration/rdf4k/org.rdf4k.repository/index.html
+$dokka.location:org.rdf4k.repository//add/org.eclipse.rdf4j.repository.Repository#kotlin.collections.Collection[org.eclipse.rdf4j.model.Statement]/PointingToDeclaration/rdf4k/org.rdf4k.repository/add.html
 $dokka.location:org.rdf4k.repository//add/org.eclipse.rdf4j.repository.RepositoryConnection#org.eclipse.rdf4j.model.Resource#org.eclipse.rdf4j.model.IRI#org.eclipse.rdf4j.model.Value#org.eclipse.rdf4j.model.IRI?/PointingToDeclaration/rdf4k/org.rdf4k.repository/add.html
 $dokka.location:org.rdf4k.repository//createIfNotPresent/org.eclipse.rdf4j.repository.manager.RepositoryManager#kotlin.String#org.eclipse.rdf4j.model.Model/PointingToDeclaration/rdf4k/org.rdf4k.repository/create-if-not-present.html
 $dokka.location:org.rdf4k.repository//rdfRepository/#kotlin.String#kotlin.String/PointingToDeclaration/rdf4k/org.rdf4k.repository/rdf-repository.html

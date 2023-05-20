@@ -3,13 +3,11 @@ package org.rdf4k
 import org.eclipse.rdf4j.model.Statement
 import org.eclipse.rdf4j.rio.RDFFormat
 import org.eclipse.rdf4j.rio.helpers.AbstractRDFHandler
+import org.rdf4k.add
 import org.rdf4k.query.bindings
 import org.rdf4k.query.iri
 import org.rdf4k.query.str
-import org.rdf4k.repository.runGraphQueryClasspath
-import org.rdf4k.repository.runTupleQuery
-import org.rdf4k.repository.runTupleQueryClasspath
-import org.rdf4k.repository.withStatementsBatch
+import org.rdf4k.repository.*
 import java.io.File
 import java.io.InputStream
 
@@ -48,7 +46,10 @@ class ExamplesDetailed : RdfContainerTest() {
     fun `Repository connection`() {
         val NAMESPACE_RES = "http://test.com/".namespace("res")
 
-        // Write statements to an RDF repository connection in batches
+        // Write statements to an RDF repository
+        repository.add(resourceAsRdfModel("input.ttl"))
+
+        // Write statements to an RDF repository in batches
         repository.withStatementsBatch(10_000) { batch ->
             batch.add(resourceAsRdfModel("input.ttl"))
         }

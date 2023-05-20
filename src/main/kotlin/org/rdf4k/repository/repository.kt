@@ -42,6 +42,12 @@ fun Repository.withStatementsBatch(batchSize: Int, use: (StatementsBatch) -> Uni
     }
 }
 
+fun Repository.add(statements: Collection<Statement>) {
+    connection.use {
+        connection.add(statements)
+    }
+}
+
 fun Repository.runTupleQuery(query: String, init: Query.() -> Unit = {}): List<BindingSet> {
     return connection.use { c ->
         val q = c.prepareTupleQuery(query)
