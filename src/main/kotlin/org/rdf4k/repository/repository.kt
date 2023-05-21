@@ -44,7 +44,7 @@ fun Repository.withStatementsBatch(batchSize: Int, use: (StatementsBatch) -> Uni
 
 fun Repository.add(statements: Collection<Statement>) {
     connection.use {
-        connection.add(statements)
+        it.add(statements)
     }
 }
 
