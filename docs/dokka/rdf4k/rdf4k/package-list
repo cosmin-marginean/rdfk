@@ -47,6 +47,7 @@ $dokka.location:org.rdf4k//parseRdfIndexed/java.io.InputStream#org.eclipse.rdf4j
 $dokka.location:org.rdf4k//resourceAsRdfModel/#kotlin.String#org.eclipse.rdf4j.rio.RDFFormat/PointingToDeclaration/rdf4k/org.rdf4k/resource-as-rdf-model.html
 $dokka.location:org.rdf4k//resourceAsString/#kotlin.String/PointingToDeclaration/rdf4k/org.rdf4k/resource-as-string.html
 $dokka.location:org.rdf4k//statement/#org.eclipse.rdf4j.model.Resource#org.eclipse.rdf4j.model.IRI#org.eclipse.rdf4j.model.Value#org.eclipse.rdf4j.model.IRI?/PointingToDeclaration/rdf4k/org.rdf4k/statement.html
+$dokka.location:org.rdf4k//toIri/kotlin.String#/PointingToDeclaration/rdf4k/org.rdf4k/to-iri.html
 $dokka.location:org.rdf4k//toRdfModel/java.io.File#org.eclipse.rdf4j.rio.RDFFormat/PointingToDeclaration/rdf4k/org.rdf4k/to-rdf-model.html
 $dokka.location:org.rdf4k//toRdfModel/java.io.InputStream#org.eclipse.rdf4j.rio.RDFFormat/PointingToDeclaration/rdf4k/org.rdf4k/to-rdf-model.html
 $dokka.location:org.rdf4k//toRdfStatements/java.io.File#org.eclipse.rdf4j.rio.RDFFormat/PointingToDeclaration/rdf4k/org.rdf4k/to-rdf-statements.html
