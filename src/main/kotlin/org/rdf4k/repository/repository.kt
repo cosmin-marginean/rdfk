@@ -22,13 +22,13 @@ fun rdfRepository(serverUrl: String, repositoryId: String): Repository {
     return repositoryManager.getRepository(repositoryId)
 }
 
-fun RepositoryManager.createIfNotPresent(repositoryId: String, bootstrapModel: Model): Boolean {
+fun RepositoryManager.createIfNotPresent(repositoryId: String, config: Model): Boolean {
     return if (hasRepositoryConfig(repositoryId)) {
-        log.info("Repository $repositoryId exists, skipping.")
+        log.info("RDF Repository $repositoryId exists, skipping.")
         false
     } else {
         log.info("Creating RDF repository $repositoryId at $location")
-        val repositoryConfig = RepositoryConfig.create(bootstrapModel, null)
+        val repositoryConfig = RepositoryConfig.create(config, null)
         addRepositoryConfig(repositoryConfig)
         true
     }
