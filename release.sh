@@ -6,8 +6,8 @@ VERSION=`cat version.properties | grep "version" | awk -F' *= *' '{print $2}'`
 echo "Version is $VERSION"
 
 rm -rf docs/dokka
-./gradlew clean dokkaHtml test
-./gradlew publish
+export COVERALLS_REPO_TOKEN="${COVERALLS_REPO_TOKEN_RDF4K}"
+./gradlew fullBuild dokkaHtml publish
 
 git add --all
 git commit -am "Release $VERSION"

@@ -130,6 +130,8 @@ signing {
 task fullBuild {
     dependsOn 'clean'
     dependsOn 'test'
+    dependsOn 'jacocoTestReport'
     dependsOn 'coverallsJacoco'
-    tasks.findByName('coverallsJacoco').mustRunAfter 'test'
+    tasks.findByName('jacocoTestReport').mustRunAfter 'test'
+    tasks.findByName('coverallsJacoco').mustRunAfter 'jacocoTestReport'
 }
