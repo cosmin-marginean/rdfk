@@ -1,4 +1,4 @@
-package org.rdf4k
+package org.rdf4k.rio
 
 import org.eclipse.rdf4j.model.Model
 import org.eclipse.rdf4j.model.Statement
@@ -6,6 +6,8 @@ import org.eclipse.rdf4j.model.impl.LinkedHashModel
 import org.eclipse.rdf4j.rio.RDFFormat
 import org.eclipse.rdf4j.rio.RDFHandler
 import org.eclipse.rdf4j.rio.helpers.StatementCollector
+import org.rdf4k.IndexedStatementHandler
+import org.rdf4k.internals.resourceAsInput
 import java.io.File
 import java.io.InputStream
 

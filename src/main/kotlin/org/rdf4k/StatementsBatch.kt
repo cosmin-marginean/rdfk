@@ -1,15 +1,14 @@
-package org.rdf4k.repository
+package org.rdf4k
 
 import org.eclipse.rdf4j.model.IRI
 import org.eclipse.rdf4j.model.Resource
 import org.eclipse.rdf4j.model.Statement
 import org.eclipse.rdf4j.model.Value
 import org.eclipse.rdf4j.repository.RepositoryConnection
-import org.rdf4k.statement
 
 class StatementsBatch(
-    private val delegate: RepositoryConnection,
-    private val batchSize: Int
+        private val delegate: RepositoryConnection,
+        private val batchSize: Int
 ) : AutoCloseable {
 
     private val statements = mutableListOf<Statement>()

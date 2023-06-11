@@ -1,12 +1,9 @@
-package org.rdf4k
+package org.rdf4k.rio
 
-import org.eclipse.rdf4j.model.IRI
-import org.eclipse.rdf4j.model.Namespace
-import org.eclipse.rdf4j.model.Resource
-import org.eclipse.rdf4j.model.Statement
-import org.eclipse.rdf4j.model.Value
+import org.eclipse.rdf4j.model.*
 import org.eclipse.rdf4j.rio.RDFFormat
 import org.eclipse.rdf4j.rio.RDFWriter
+import org.rdf4k.statement
 import java.io.File
 import java.io.OutputStream
 
@@ -25,19 +22,19 @@ fun Collection<Statement>.writeTo(writer: RDFWriter) {
 }
 
 fun File.useRdfWriter(
-    format: RDFFormat,
-    namespaces: List<Namespace> = emptyList(),
-    bufferSize: Int = 8192,
-    use: (RDFWriter) -> Unit
+        format: RDFFormat,
+        namespaces: List<Namespace> = emptyList(),
+        bufferSize: Int = 8192,
+        use: (RDFWriter) -> Unit
 ) {
     outputStream().useRdfWriter(format, namespaces, bufferSize, use)
 }
 
 fun OutputStream.useRdfWriter(
-    format: RDFFormat,
-    namespaces: List<Namespace> = emptyList(),
-    bufferSize: Int = 8192,
-    use: (RDFWriter) -> Unit
+        format: RDFFormat,
+        namespaces: List<Namespace> = emptyList(),
+        bufferSize: Int = 8192,
+        use: (RDFWriter) -> Unit
 ) {
     this.use { outputStream ->
         Rdf4kWriter(format, outputStream, namespaces, bufferSize).use { rdf4kWriter ->

@@ -3,9 +3,11 @@ package org.rdf4k
 import org.eclipse.rdf4j.model.impl.SimpleValueFactory
 import org.eclipse.rdf4j.rio.RDFFormat
 import org.eclipse.rdf4j.rio.Rio
+import org.rdf4k.rio.useRdfWriter
+import org.rdf4k.rio.write
 import java.io.File
 
-class Examples : RdfContainerTest() {
+class Examples {
 
     fun `writer - old`() {
         val outputFile = File("...")
@@ -19,18 +21,18 @@ class Examples : RdfContainerTest() {
             rdfWriter.handleNamespace("res", RES)
             rdfWriter.handleNamespace("defs", DEFS)
             rdfWriter.handleStatement(
-                valueFactory.createStatement(
-                    valueFactory.createIRI(RES, "one"),
-                    valueFactory.createIRI(DEFS, "name"),
-                    valueFactory.createLiteral("John Smith")
-                )
+                    valueFactory.createStatement(
+                            valueFactory.createIRI(RES, "one"),
+                            valueFactory.createIRI(DEFS, "name"),
+                            valueFactory.createLiteral("John Smith")
+                    )
             )
             rdfWriter.handleStatement(
-                valueFactory.createStatement(
-                    valueFactory.createIRI(RES, "two"),
-                    valueFactory.createIRI(DEFS, "name"),
-                    valueFactory.createLiteral("Angela Smith")
-                )
+                    valueFactory.createStatement(
+                            valueFactory.createIRI(RES, "two"),
+                            valueFactory.createIRI(DEFS, "name"),
+                            valueFactory.createLiteral("Angela Smith")
+                    )
             )
             rdfWriter.endRDF()
         }
@@ -46,5 +48,4 @@ class Examples : RdfContainerTest() {
             rdfWriter.write(RES.iri("two"), DEFS.iri("name"), "Angela Smith".literal())
         }
     }
-
 }

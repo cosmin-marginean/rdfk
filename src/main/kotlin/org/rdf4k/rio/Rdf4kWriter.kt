@@ -1,4 +1,4 @@
-package org.rdf4k
+package org.rdf4k.rio
 
 import org.eclipse.rdf4j.model.Namespace
 import org.eclipse.rdf4j.rio.RDFFormat
@@ -7,10 +7,10 @@ import java.io.BufferedOutputStream
 import java.io.OutputStream
 
 class Rdf4kWriter(
-    val format: RDFFormat,
-    val outputStream: OutputStream,
-    val namespaces: List<Namespace> = emptyList(),
-    val bufferSize: Int = 8192
+        format: RDFFormat,
+        outputStream: OutputStream,
+        namespaces: List<Namespace> = emptyList(),
+        bufferSize: Int = 8192
 ) : AutoCloseable {
 
     val rdfWriter = Rio.createWriter(format, BufferedOutputStream(outputStream, bufferSize))

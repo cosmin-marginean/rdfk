@@ -3,15 +3,12 @@ package org.rdf4k
 import org.eclipse.rdf4j.model.Statement
 import org.eclipse.rdf4j.rio.RDFFormat
 import org.eclipse.rdf4j.rio.helpers.AbstractRDFHandler
-import org.rdf4k.add
-import org.rdf4k.query.bindings
-import org.rdf4k.query.iri
-import org.rdf4k.query.str
-import org.rdf4k.repository.*
+import org.rdf4k.TestContainer.Companion.repository
+import org.rdf4k.rio.*
 import java.io.File
 import java.io.InputStream
 
-class ExamplesDetailed : RdfContainerTest() {
+class ExamplesDetailed {
 
     fun `Reading RDF`() {
 
@@ -44,7 +41,7 @@ class ExamplesDetailed : RdfContainerTest() {
     }
 
     fun `Repository connection`() {
-        val NAMESPACE_RES = "http://test.com/".namespace("res")
+        val MY_NAMESPACE = "http://test.com/".namespace("res")
 
         // Write statements to an RDF repository
         repository.add(resourceAsRdfModel("input.ttl"))
@@ -55,19 +52,18 @@ class ExamplesDetailed : RdfContainerTest() {
         }
 
         // Querying
-        repository.runTupleQuery("SELECT ?s ?p ?o WHERE { ?s ?p ?o . }") {
-            bindings("s" to NAMESPACE_RES.iri("one"))
-        }.forEach { row ->
-            println(row.iri("p"))
-            println(row.str("o"))
-        }
+        repository.sparqlSelect("SELECT ?s ?p ?o WHERE { ?s ?p ?o . }", "s" to MY_NAMESPACE.iri("one"))
+                .forEach { row ->
+                    println(row.iri("p"))
+                    println(row.str("o"))
+                }
 
         // Querying using a .sparql from classpath
-        repository.runTupleQueryClasspath("queries/tuple-query.sparql") {
-            bindings("s" to NAMESPACE_RES.iri("one"))
-        }
-        repository.runGraphQueryClasspath("queries/graph-query.sparql") {
-            bindings("s" to NAMESPACE_RES.iri("one"))
-        }
+        repository.sparqlSelectClasspath("queries/tuple-query.sparql",
+                "s" to MY_NAMESPACE.iri("one")
+        )
+        repository.sparqlGraphClasspath("queries/graph-query.sparql",
+                "s" to MY_NAMESPACE.iri("one")
+        )
     }
 }

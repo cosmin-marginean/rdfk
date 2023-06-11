@@ -11,7 +11,3 @@ fun String.namespace(prefix: String): Namespace {
 fun Namespace.iri(resource: String): IRI {
     return valueFactory.createIRI(this.name, resource)
 }
-
-fun String.toIri(): IRI {
-    return valueFactory.createIRI(this)
-}

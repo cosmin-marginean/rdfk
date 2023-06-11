@@ -1,26 +1,13 @@
-package org.rdf4k.repository
+package org.rdf4k
 
 import org.eclipse.rdf4j.model.Model
 import org.eclipse.rdf4j.model.Statement
-import org.eclipse.rdf4j.query.BindingSet
-import org.eclipse.rdf4j.query.Query
 import org.eclipse.rdf4j.repository.Repository
 import org.eclipse.rdf4j.repository.config.RepositoryConfig
-import org.eclipse.rdf4j.repository.manager.RemoteRepositoryManager
 import org.eclipse.rdf4j.repository.manager.RepositoryManager
-import org.rdf4k.iri
-import org.rdf4k.literal
-import org.rdf4k.resourceAsString
-import org.rdf4k.statement
 import org.slf4j.LoggerFactory
 
-private val log = LoggerFactory.getLogger("org.rdf4k.repository")
-
-fun rdfRepository(serverUrl: String, repositoryId: String): Repository {
-    val repositoryManager = RemoteRepositoryManager(serverUrl)
-    repositoryManager.init()
-    return repositoryManager.getRepository(repositoryId)
-}
+private val log = LoggerFactory.getLogger("org.rdf4k")
 
 fun RepositoryManager.createIfNotPresent(repositoryId: String, config: Model): Boolean {
     return if (hasRepositoryConfig(repositoryId)) {
@@ -46,30 +33,6 @@ fun Repository.add(statements: Collection<Statement>) {
     connection.use {
         it.add(statements)
     }
-}
-
-fun Repository.runTupleQuery(query: String, init: Query.() -> Unit = {}): List<BindingSet> {
-    return connection.use { c ->
-        val q = c.prepareTupleQuery(query)
-        init(q)
-        q.evaluate().toList()
-    }
-}
-
-fun Repository.runTupleQueryClasspath(classpathQuery: String, init: Query.() -> Unit = {}): List<BindingSet> {
-    return runTupleQuery(resourceAsString(classpathQuery), init)
-}
-
-fun Repository.runGraphQuery(query: String, init: Query.() -> Unit = {}): List<Statement> {
-    return connection.use { c ->
-        val q = c.prepareGraphQuery(query)
-        init(q)
-        q.evaluate().toList()
-    }
-}
-
-fun Repository.runGraphQueryClasspath(classpathQuery: String, init: Query.() -> Unit = {}): List<Statement> {
-    return runGraphQuery(resourceAsString(classpathQuery), init)
 }
 
 internal fun Model.replaceRepositoryId(newId: String): Model {

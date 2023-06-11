@@ -7,43 +7,8 @@
 A Kotlin library for working with RDF. It uses [RDF4J](https://rdf4j.org/) internally
 and the design is largely based on extension functions, providing a more fluent and functional approach.
 
-#### With native RDF4J
-```kotlin
-val RES = "http://test.com/res/"
-val DEFS = "http://test.com/defs/"
-val valueFactory = SimpleValueFactory.getInstance()
-outputFile.outputStream().use { outputStream ->
-    val rdfWriter = Rio.createWriter(RDFFormat.TURTLE, outputStream)
-    rdfWriter.startRDF()
-    rdfWriter.handleNamespace("res", RES)
-    rdfWriter.handleNamespace("defs", DEFS)
-    rdfWriter.handleStatement(
-        valueFactory.createStatement(
-            valueFactory.createIRI(RES, "one"),
-            valueFactory.createIRI(DEFS, "name"),
-            valueFactory.createLiteral("John Smith")
-        )
-    )
-    rdfWriter.handleStatement(
-        valueFactory.createStatement(
-            valueFactory.createIRI(RES, "two"),
-            valueFactory.createIRI(DEFS, "name"),
-            valueFactory.createLiteral("Angela Smith")
-        )
-    )
-    rdfWriter.endRDF()
-}
-```
 
-#### With RDF4K
-```kotlin
-val RES = "http://test.com/res/".namespace("res")
-val DEFS = "http://test.com/defs/".namespace("defs")
-outputFile.useRdfWriter(RDFFormat.TURTLE, listOf(RES, DEFS)) { rdfWriter ->
-    rdfWriter.write(RES.iri("one"), DEFS.iri("name"), "John Smith".literal())
-    rdfWriter.write(RES.iri("two"), DEFS.iri("name"), "Angela Smith".literal())
-}
-```
+[Documentation](https://cosmin-marginean.github.io/rdf4k/dokka/rdf4k/)
 
 ## Usage
 ```groovy
@@ -51,11 +16,6 @@ dependencies {
     implementation "io.resoluteworks:rdf4k:0.9.6"
 }
 ```
-
-## Examples
-
-For more details please check [examples](https://github.com/cosmin-marginean/rdf4k/blob/main/src/test/kotlin/org/rdf4k/ExamplesDetailed.kt)
-and [docs](https://cosmin-marginean.github.io/rdf4k/dokka/rdf4k/)
 
 ### Reading RDF
 ```kotlin
@@ -86,30 +46,30 @@ File("input.ttl").useRdfWriter(RDFFormat.TURTLE, listOf(RES, DEFS)) { rdfWriter 
 }
 ```
 
-### RDF Repository
+### Write and query a repository
 ```kotlin
-// Write statements to an RDF repository
-val statements: List<Statement> = ...
-repository.add(statements)
+        val MY_NAMESPACE = "http://test.com/".namespace("res")
 
-// Write statements to an RDF repository in batches 
-repository.useConnectionBatch(10_000) { batch ->
+// Write statements to an RDF repository
+repository.add(resourceAsRdfModel("input.ttl"))
+
+// Write statements to an RDF repository in batches
+repository.withStatementsBatch(10_000) { batch ->
     batch.add(resourceAsRdfModel("input.ttl"))
 }
 
 // Querying
-repository.runTupleQuery("SELECT ?s ?p ?o WHERE { ?s ?p ?o . }") {
-    bindings("s" to NAMESPACE_RES.iri("one"))
-}.forEach { row ->
-    println(row.iri("p"))
-    println(row.str("o"))
-}
+repository.sparqlSelect("SELECT ?s ?p ?o WHERE { ?s ?p ?o . }", "s" to MY_NAMESPACE.iri("one"))
+        .forEach { row ->
+            println(row.iri("p"))
+            println(row.str("o"))
+        }
 
 // Querying using a .sparql from classpath
-repository.runTupleQueryClasspath("queries/tuple-query.sparql") {
-    bindings("s" to NAMESPACE_RES.iri("one"))
-}
-repository.runGraphQueryClasspath("queries/graph-query.sparql") {
-    bindings("s" to NAMESPACE_RES.iri("one"))
-}
+repository.sparqlSelectClasspath("queries/tuple-query.sparql",
+        "s" to MY_NAMESPACE.iri("one")
+)
+repository.sparqlGraphClasspath("queries/graph-query.sparql",
+        "s" to MY_NAMESPACE.iri("one")
+)
 ```

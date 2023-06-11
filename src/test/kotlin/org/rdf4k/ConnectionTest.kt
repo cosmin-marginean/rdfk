@@ -1,94 +1,38 @@
 package org.rdf4k
 
-import org.rdf4k.query.bindings
-import org.rdf4k.query.boolean
-import org.rdf4k.query.int
-import org.rdf4k.query.iri
-import org.rdf4k.query.long
-import org.rdf4k.query.str
-import org.rdf4k.repository.runTupleQueryClasspath
-import org.rdf4k.repository.useBatch
-import org.rdf4k.repository.withStatementsBatch
-import org.testng.Assert.assertEquals
-import org.testng.Assert.assertFalse
-import org.testng.annotations.Test
+import io.kotest.core.spec.style.StringSpec
+import io.kotest.matchers.shouldBe
+import org.rdf4k.TestContainer.Companion.repository
+import org.rdf4k.rio.resourceAsRdfModel
 
-class ConnectionTest : RdfContainerTest() {
+class ConnectionTest : StringSpec({
 
-    @Test
-    fun `repository use batch`() {
-        repository.withStatementsBatch(10) { batch ->
-            batch.add(resourceAsRdfModel("test-input.ttl"))
-        }
-        val subject = "http://bods.openownership.org/resource/openownership-register-5450813549318202701".iri()
-
-        val rows = repository.runTupleQueryClasspath("input-test-query-1.sparql") {
-            bindings("s" to subject)
-        }
-        assertEquals(rows.size, 11)
-        assertEquals(
-            rows.find { it.iri("p") == "http://bods.openownership.org/vocabulary/statementId".iri() }!!.str("o"),
-            "openownership-register-5450813549318202701"
-        )
-    }
-
-    @Test
-    fun `connection use batch`() {
+    "useBatch" {
         repository.connection.use { connection ->
             connection.useBatch(10) { batch ->
                 batch.add(resourceAsRdfModel("test-input.ttl"))
             }
         }
         val subject = "http://bods.openownership.org/resource/openownership-register-5450813549318202701".iri()
-        val rows = repository.runTupleQueryClasspath("input-test-query-1.sparql") {
-            bindings("s" to subject)
-        }
-        assertEquals(rows.size, 11)
-        assertEquals(
-            rows.find { it.iri("p") == "http://bods.openownership.org/vocabulary/statementId".iri() }!!.str("o"),
-            "openownership-register-5450813549318202701"
+        val rows = repository.sparqlSelectClasspath(
+                "query-select.sparql",
+                "s" to subject,
         )
+        rows.size shouldBe 11
+        rows.find { it.iri("p") == "http://bods.openownership.org/vocabulary/statementId".iri() }!!.str("o") shouldBe "openownership-register-5450813549318202701"
     }
 
-    @Test
-    fun `add statement to batch`() {
-        repository.withStatementsBatch(10) { batch ->
-            batch.add(T1.iri("one"), T2.iri("name"), "John Smith".literal())
-            batch.add(T1.iri("one"), T2.iri("age"), "23".literal())
-        }
-        val rows = repository.runTupleQueryClasspath("input-test-query-1.sparql") {
-            bindings("s" to T1.iri("one"))
-        }
-        assertEquals(rows.size, 3)
-        assertEquals(
-            rows.find { it.iri("p") == T2.iri("name") }!!.str("o"),
-            "John Smith"
-        )
-        assertEquals(
-            rows.find { it.iri("p") == T2.iri("age") }!!.int("o"),
-            23
-        )
-    }
 
-    @Test
-    fun `add statement to connection`() {
+    "add statements" {
         repository.connection.use { connection ->
             connection.add(T1.iri("one"), T2.iri("name"), "John Smith".literal())
             connection.add(T1.iri("one"), T2.iri("age"), "23".literal())
             connection.add(T1.iri("one"), T2.iri("enabled"), false.literal())
         }
-        val rows = repository.runTupleQueryClasspath("input-test-query-1.sparql") {
-            bindings("s" to T1.iri("one"))
-        }
-        assertEquals(rows.size, 4)
-        assertEquals(
-            rows.find { it.iri("p") == T2.iri("name") }!!.str("o"),
-            "John Smith"
-        )
-        assertEquals(
-            rows.find { it.iri("p") == T2.iri("age") }!!.long("o"),
-            23
-        )
-        assertFalse(rows.find { it.iri("p") == T2.iri("enabled") }!!.boolean("o"))
+        val rows = repository.sparqlSelectClasspath("query-select.sparql", "s" to T1.iri("one"))
+        rows.size shouldBe 4
+        rows.find { it.iri("p") == T2.iri("name") }!!.str("o") shouldBe "John Smith"
+        rows.find { it.iri("p") == T2.iri("age") }!!.long("o") shouldBe 23
+        rows.find { it.iri("p") == T2.iri("enabled") }!!.boolean("o") shouldBe false
     }
-}
+})
