@@ -9,7 +9,8 @@ class QueryTest : StringSpec({
 
     "bindings - pairs" {
         repository.connection.use { connection ->
-            val bindings = connection.prepareTupleQuery("SELECT ?p ?o WHERE { ?s ?p ?o }").bindings("s" to T1.iri("one")).bindings
+            val bindings =
+                connection.prepareTupleQuery("SELECT ?p ?o WHERE { ?s ?p ?o }").bindings("s" to T1.iri("one")).bindings
             bindings.size() shouldBe 1
             bindings.iri("s") shouldBe T1.iri("one")
         }
@@ -17,7 +18,8 @@ class QueryTest : StringSpec({
 
     "bindings - map" {
         repository.connection.use { connection ->
-            val bindings = connection.prepareTupleQuery("SELECT ?p ?o WHERE { ?s ?p ?o }").bindings(mapOf("s" to T1.iri("one"))).bindings
+            val bindings = connection.prepareTupleQuery("SELECT ?p ?o WHERE { ?s ?p ?o }")
+                .bindings(mapOf("s" to T1.iri("one"))).bindings
             bindings.size() shouldBe 1
             bindings.iri("s") shouldBe T1.iri("one")
         }

@@ -11,6 +11,7 @@ class NamespaceTest : StringSpec({
     }
 
     "Namespace.iri" {
-        "https://mynamespace.com/".namespace("test").iri("1") shouldBe valueFactory.createIRI("https://mynamespace.com/", "1")
+        "https://mynamespace.com/".namespace("test")
+            .iri("1") shouldBe valueFactory.createIRI("https://mynamespace.com/", "1")
     }
 })

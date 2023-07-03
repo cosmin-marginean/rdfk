@@ -6,7 +6,7 @@ import java.io.InputStreamReader
 
 internal fun resourceAsString(classpathLocation: String): String {
     return resourceAsInput(classpathLocation)
-            .use { BufferedReader(InputStreamReader(it)).readText() }
+        .use { BufferedReader(InputStreamReader(it)).readText() }
 }
 
 internal fun resourceAsInput(classpathLocation: String): InputStream {

@@ -53,6 +53,7 @@ $dokka.location:org.rdf4k//sparqlSelect/org.eclipse.rdf4j.repository.Repository#
 $dokka.location:org.rdf4k//sparqlSelectClasspath/org.eclipse.rdf4j.repository.Repository#kotlin.String#kotlin.Array[kotlin.Pair[kotlin.String,org.eclipse.rdf4j.model.Value]]/PointingToDeclaration/rdf4k/org.rdf4k/sparql-select-classpath.html
 $dokka.location:org.rdf4k//statement/#org.eclipse.rdf4j.model.Resource#org.eclipse.rdf4j.model.IRI#org.eclipse.rdf4j.model.Value#org.eclipse.rdf4j.model.IRI?/PointingToDeclaration/rdf4k/org.rdf4k/statement.html
 $dokka.location:org.rdf4k//str/org.eclipse.rdf4j.query.BindingSet#kotlin.String/PointingToDeclaration/rdf4k/org.rdf4k/str.html
+$dokka.location:org.rdf4k//tryAdd/org.eclipse.rdf4j.repository.RepositoryConnection#kotlin.collections.Collection[org.eclipse.rdf4j.model.Statement]/PointingToDeclaration/rdf4k/org.rdf4k/try-add.html
 $dokka.location:org.rdf4k//useBatch/org.eclipse.rdf4j.repository.RepositoryConnection#kotlin.Int#kotlin.Function1[org.rdf4k.StatementsBatch,kotlin.Unit]/PointingToDeclaration/rdf4k/org.rdf4k/use-batch.html
 $dokka.location:org.rdf4k//withStatementsBatch/org.eclipse.rdf4j.repository.Repository#kotlin.Int#kotlin.Function1[org.rdf4k.StatementsBatch,kotlin.Unit]/PointingToDeclaration/rdf4k/org.rdf4k/with-statements-batch.html
 $dokka.location:org.rdf4k/IndexedStatementHandler///PointingToDeclaration/rdf4k/org.rdf4k/-indexed-statement-handler/index.html

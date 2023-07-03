@@ -7,10 +7,10 @@ import java.io.BufferedOutputStream
 import java.io.OutputStream
 
 class Rdf4kWriter(
-        format: RDFFormat,
-        outputStream: OutputStream,
-        namespaces: List<Namespace> = emptyList(),
-        bufferSize: Int = 8192
+    format: RDFFormat,
+    outputStream: OutputStream,
+    namespaces: List<Namespace> = emptyList(),
+    bufferSize: Int = 8192
 ) : AutoCloseable {
 
     val rdfWriter = Rio.createWriter(format, BufferedOutputStream(outputStream, bufferSize))

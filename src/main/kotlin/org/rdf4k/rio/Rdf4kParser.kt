@@ -6,9 +6,9 @@ import org.eclipse.rdf4j.rio.Rio
 import java.io.InputStream
 
 class Rdf4kParser(
-        val inputstream: InputStream,
-        format: RDFFormat,
-        rdfHandler: RDFHandler
+    val inputstream: InputStream,
+    format: RDFFormat,
+    rdfHandler: RDFHandler
 ) : AutoCloseable {
 
     val rdfParser = Rio.createParser(format)

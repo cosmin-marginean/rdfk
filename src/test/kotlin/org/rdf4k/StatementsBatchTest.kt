@@ -26,9 +26,10 @@ class StatementsBatchTest : StringSpec() {
                 batch.add(T1.iri("subject"), T2.iri("name"), "John Smith - $it".literal())
             }
         }
-        val rows = repository.sparqlSelect("SELECT ?o WHERE { ?s ?p ?o } LIMIT 100",
-                "s" to T1.iri("subject"),
-                "p" to T2.iri("name")
+        val rows = repository.sparqlSelect(
+            "SELECT ?o WHERE { ?s ?p ?o } LIMIT 100",
+            "s" to T1.iri("subject"),
+            "p" to T2.iri("name")
         )
         rows.size shouldBe 100
         rows.map { it.str("o") } shouldContainExactly (0 until 100).map {

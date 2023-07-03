@@ -7,8 +7,8 @@ import org.eclipse.rdf4j.model.Value
 import org.eclipse.rdf4j.repository.RepositoryConnection
 
 class StatementsBatch(
-        private val delegate: RepositoryConnection,
-        private val batchSize: Int
+    private val connection: RepositoryConnection,
+    private val batchSize: Int
 ) : AutoCloseable {
 
     private val statements = mutableListOf<Statement>()
@@ -26,14 +26,14 @@ class StatementsBatch(
     fun add(statement: Statement) {
         statements.add(statement)
         if (statements.size == batchSize) {
-            delegate.add(statements)
+            connection.tryAdd(statements)
             statements.clear()
         }
     }
 
     override fun close() {
         if (statements.isNotEmpty()) {
-            delegate.add(statements)
+            connection.tryAdd(statements)
         }
     }
 }

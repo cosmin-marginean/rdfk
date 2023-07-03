@@ -19,7 +19,8 @@ class RepositoryTest : StringSpec({
 
         val rows = repository.sparqlSelectClasspath("query-select.sparql", "s" to subject)
         rows.size shouldBe 11
-        rows.find { it.iri("p") == "http://bods.openownership.org/vocabulary/statementId".iri() }!!.str("o") shouldBe "openownership-register-5450813549318202701"
+        rows.find { it.iri("p") == "http://bods.openownership.org/vocabulary/statementId".iri() }!!
+            .str("o") shouldBe "openownership-register-5450813549318202701"
     }
 
     "withStatementsBatch - add statements to batch" {
@@ -35,10 +36,10 @@ class RepositoryTest : StringSpec({
 
     "add statements" {
         repository.add(
-                listOf(
-                        statement(T1.iri("one"), T2.iri("name"), "John Smith".literal()),
-                        statement(T1.iri("one"), T2.iri("age"), "23".literal())
-                )
+            listOf(
+                statement(T1.iri("one"), T2.iri("name"), "John Smith".literal()),
+                statement(T1.iri("one"), T2.iri("age"), "23".literal())
+            )
         )
 
         val rows = repository.sparqlSelectClasspath("query-select.sparql", "s" to T1.iri("one"))

@@ -21,18 +21,18 @@ class Examples {
             rdfWriter.handleNamespace("res", RES)
             rdfWriter.handleNamespace("defs", DEFS)
             rdfWriter.handleStatement(
-                    valueFactory.createStatement(
-                            valueFactory.createIRI(RES, "one"),
-                            valueFactory.createIRI(DEFS, "name"),
-                            valueFactory.createLiteral("John Smith")
-                    )
+                valueFactory.createStatement(
+                    valueFactory.createIRI(RES, "one"),
+                    valueFactory.createIRI(DEFS, "name"),
+                    valueFactory.createLiteral("John Smith")
+                )
             )
             rdfWriter.handleStatement(
-                    valueFactory.createStatement(
-                            valueFactory.createIRI(RES, "two"),
-                            valueFactory.createIRI(DEFS, "name"),
-                            valueFactory.createLiteral("Angela Smith")
-                    )
+                valueFactory.createStatement(
+                    valueFactory.createIRI(RES, "two"),
+                    valueFactory.createIRI(DEFS, "name"),
+                    valueFactory.createLiteral("Angela Smith")
+                )
             )
             rdfWriter.endRDF()
         }

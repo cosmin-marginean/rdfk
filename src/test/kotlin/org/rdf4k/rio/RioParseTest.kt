@@ -37,9 +37,10 @@ class RioParseTest : StringSpec() {
 
         "parse file indexed" {
             val indices = mutableListOf<Long>()
-            val count = File("src/test/resources/test-input.ttl").parseRdfIndexed(RDFFormat.TURTLE) { index, statement ->
-                indices.add(index)
-            }
+            val count =
+                File("src/test/resources/test-input.ttl").parseRdfIndexed(RDFFormat.TURTLE) { index, statement ->
+                    indices.add(index)
+                }
             assertEquals(count, 18)
             val expected: List<Long> = (0L..17L).toList()
             assertContentEquals(indices, expected)
@@ -86,32 +87,32 @@ class RioParseTest : StringSpec() {
     private fun assertStatementsMatch(statements: Collection<Statement>) {
         statements.size shouldBe 18
         statements.contains(
-                statement(
-                        "http://bods.openownership.org/resource/openownership-register-9473160899263237344".iri(),
-                        "http://www.w3.org/1999/02/22-rdf-syntax-ns#type".iri(),
-                        "http://bods.openownership.org/vocabulary/RegisteredEntity".iri()
-                )
+            statement(
+                "http://bods.openownership.org/resource/openownership-register-9473160899263237344".iri(),
+                "http://www.w3.org/1999/02/22-rdf-syntax-ns#type".iri(),
+                "http://bods.openownership.org/vocabulary/RegisteredEntity".iri()
+            )
         ) shouldBe true
 
         statements.contains(
-                statement(
-                        "http://bods.openownership.org/resource/openownership-register-5450813549318202701".iri(),
-                        "http://bods.openownership.org/vocabulary/statesInterest".iri(),
-                        "http://bods.openownership.org/resource/openownership-register-5450813549318202701_3".iri()
-                )
+            statement(
+                "http://bods.openownership.org/resource/openownership-register-5450813549318202701".iri(),
+                "http://bods.openownership.org/vocabulary/statesInterest".iri(),
+                "http://bods.openownership.org/resource/openownership-register-5450813549318202701_3".iri()
+            )
         ) shouldBe true
     }
 
     private fun assertNamespacesMatch(namespaces: Collection<Namespace>) {
         namespaces shouldContainExactly
                 listOf(
-                        "http://www.w3.org/1999/02/22-rdf-syntax-ns#".namespace("rdf"),
-                        "http://www.w3.org/2000/01/rdf-schema#".namespace("rdfs"),
-                        "http://www.w3.org/2002/07/owl#".namespace("owl"),
-                        "http://www.w3.org/2001/XMLSchema#".namespace("xsd"),
-                        "http://xmlns.com/foaf/0.1/".namespace("foaf"),
-                        "http://bods.openownership.org/vocabulary/".namespace("bods"),
-                        "http://bods.openownership.org/resource/".namespace("bodsr"),
+                    "http://www.w3.org/1999/02/22-rdf-syntax-ns#".namespace("rdf"),
+                    "http://www.w3.org/2000/01/rdf-schema#".namespace("rdfs"),
+                    "http://www.w3.org/2002/07/owl#".namespace("owl"),
+                    "http://www.w3.org/2001/XMLSchema#".namespace("xsd"),
+                    "http://xmlns.com/foaf/0.1/".namespace("foaf"),
+                    "http://bods.openownership.org/vocabulary/".namespace("bods"),
+                    "http://bods.openownership.org/resource/".namespace("bodsr"),
                 )
     }
 }

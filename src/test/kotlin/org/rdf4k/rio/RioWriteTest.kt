@@ -59,7 +59,8 @@ class RioWriteTest : StringSpec() {
             }
 
             outputFile.readLines().toList().filter { it.trim().isNotEmpty() }.joinToString("\n") shouldBe
-                    resourceAsString("test-output-with-graph.trig").split("\n").filter { it.trim().isNotEmpty() }.joinToString("\n")
+                    resourceAsString("test-output-with-graph.trig").split("\n").filter { it.trim().isNotEmpty() }
+                        .joinToString("\n")
             outputFile.delete()
         }
 
@@ -89,8 +90,8 @@ class RioWriteTest : StringSpec() {
         rdfWriter.write(T1.iri("three"), T2.iri("createdDate"), instant.literal())
 
         listOf(
-                statement(T1.iri("x"), T1.iri("name"), "Tom".literal()),
-                statement(T1.iri("y"), T1.iri("name"), "Jane".literal())
+            statement(T1.iri("x"), T1.iri("name"), "Tom".literal()),
+            statement(T1.iri("y"), T1.iri("name"), "Jane".literal())
         ).writeTo(rdfWriter)
     }
 }

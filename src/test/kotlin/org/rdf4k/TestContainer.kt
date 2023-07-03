@@ -26,7 +26,7 @@ class TestContainer : BeforeProjectListener, BeforeEachListener, AfterProjectLis
 
         fun createRepository(repositoryId: String): Boolean {
             val model = resourceAsRdfModel("graphdb-repository.ttl")
-                    .replaceRepositoryId(repositoryId)
+                .replaceRepositoryId(repositoryId)
             return repositoryManager.createIfNotPresent(repositoryId, model)
         }
 
@@ -43,7 +43,7 @@ class TestContainer : BeforeProjectListener, BeforeEachListener, AfterProjectLis
 
     override suspend fun beforeProject() {
         container = GenericContainer("ontotext/graphdb:10.1.3")
-                .withExposedPorts(7200)
+            .withExposedPorts(7200)
         container.start()
         repositoryUrl = "http://localhost:${container.firstMappedPort}"
         log.info("RDF Repository URL is $repositoryUrl")

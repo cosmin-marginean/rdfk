@@ -53,17 +53,19 @@ class ExamplesDetailed {
 
         // Querying
         repository.sparqlSelect("SELECT ?s ?p ?o WHERE { ?s ?p ?o . }", "s" to MY_NAMESPACE.iri("one"))
-                .forEach { row ->
-                    println(row.iri("p"))
-                    println(row.str("o"))
-                }
+            .forEach { row ->
+                println(row.iri("p"))
+                println(row.str("o"))
+            }
 
         // Querying using a .sparql from classpath
-        repository.sparqlSelectClasspath("queries/tuple-query.sparql",
-                "s" to MY_NAMESPACE.iri("one")
+        repository.sparqlSelectClasspath(
+            "queries/tuple-query.sparql",
+            "s" to MY_NAMESPACE.iri("one")
         )
-        repository.sparqlGraphClasspath("queries/graph-query.sparql",
-                "s" to MY_NAMESPACE.iri("one")
+        repository.sparqlGraphClasspath(
+            "queries/graph-query.sparql",
+            "s" to MY_NAMESPACE.iri("one")
         )
     }
 }
