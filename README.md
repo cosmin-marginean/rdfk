@@ -73,4 +73,3 @@ repository.sparqlGraphClasspath("queries/graph-query.sparql",
         "s" to MY_NAMESPACE.iri("one")
 )
 ```
-
