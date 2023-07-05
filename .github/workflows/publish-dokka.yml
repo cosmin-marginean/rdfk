@@ -1,0 +1,20 @@
+name: Publish Dokka
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Publish Dokka
+        uses: MathieuSoysal/Javadoc-publisher.yml@v2.4.0
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          javadoc-branch: dokka
+          java-version: 11
+          target-folder: docs/dokka
+          project: gradle
+          custom-command: ./gradlew dokkaHtml
