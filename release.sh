@@ -8,7 +8,7 @@ echo "Version is $VERSION"
 export COVERALLS_REPO_TOKEN="${COVERALLS_REPO_TOKEN_RDF4K}"
 ./gradlew publish
 
-#git tag "v${VERSION}" -m "Release v${VERSION}"
-#git push --tags --force
+git tag "v${VERSION}" -m "Release v${VERSION}"
+git push --tags --force
 
 echo "Finished building version $VERSION"
