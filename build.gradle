@@ -76,10 +76,6 @@ jacocoTestReport {
     }
 }
 
-dokkaHtml {
-    outputDirectory.set(file("docs/dokka/${project.name}"))
-}
-
 publishing {
     publications {
         mavenJava(MavenPublication) {
