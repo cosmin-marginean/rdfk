@@ -52,11 +52,8 @@ dependencies {
     testImplementation "com.ontotext.graphdb:graphdb-runtime:10.2.1"
 }
 
-compileKotlin {
-    kotlinOptions.jvmTarget = "17"
-}
-compileTestKotlin {
-    kotlinOptions.jvmTarget = "17"
+kotlin {
+    jvmToolchain(11)
 }
 
 test {
