@@ -48,7 +48,7 @@ File("input.ttl").useRdfWriter(RDFFormat.TURTLE, listOf(RES, DEFS)) { rdfWriter 
 
 ### Write and query a repository
 ```kotlin
-        val MY_NAMESPACE = "http://test.com/".namespace("res")
+val MY_NAMESPACE = "http://test.com/".namespace("res")
 
 // Write statements to an RDF repository
 repository.add(resourceAsRdfModel("input.ttl"))
