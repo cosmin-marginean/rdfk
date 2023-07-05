@@ -3,5 +3,6 @@
 build
 out
 etc
+docs
 Play.kt
 .DS_Store
