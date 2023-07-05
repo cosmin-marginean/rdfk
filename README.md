@@ -8,7 +8,7 @@ A Kotlin library for working with RDF. It uses [RDF4J](https://rdf4j.org/) inter
 and the design is largely based on extension functions, providing a more fluent and functional approach.
 
 
-[Documentation](https://cosmin-marginean.github.io/rdf4k/dokka/rdf4k/)
+[API Docs](https://cosmin-marginean.github.io/rdf4k/rdf4k/)
 
 ## Usage
 ```groovy
