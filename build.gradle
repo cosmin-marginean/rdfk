@@ -128,3 +128,5 @@ task fullBuild {
     tasks.findByName('jacocoTestReport').mustRunAfter 'test'
     tasks.findByName('coverallsJacoco').mustRunAfter 'jacocoTestReport'
 }
+
+tasks.withType(PublishToMavenRepository).configureEach { it.dependsOn fullBuild }
