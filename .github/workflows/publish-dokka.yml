@@ -1,21 +1,18 @@
-name: Publish Dokka
+name: Build and Deploy
 
 on:
   push:
     branches:
       - main
-
 jobs:
-  publish:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Publish Dokka
-        uses: MathieuSoysal/Javadoc-publisher.yml@v2.4.0
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Install and Build
+        run: ./gradlew dokkaHtml
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          javadoc-branch: dokka
-          java-version: 11
-          subdirectories: docs/dokka
-          target-folder: docs
-          project: gradle
-          custom-command: ./gradlew dokkaHtml
+          folder: docs/dokka
