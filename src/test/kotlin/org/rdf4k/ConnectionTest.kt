@@ -17,13 +17,13 @@ class ConnectionTest : StringSpec({
                 batch.add(resourceAsRdfModel("test-input.ttl"))
             }
         }
-        val subject = "http://bods.openownership.org/resource/openownership-register-5450813549318202701".iri()
+        val subject = "http://bods.openownership.org/resource/openownership-register-5450813549318202701".toIri()
         val rows = repository.sparqlSelectClasspath(
             "query-select.sparql",
             "s" to subject,
         )
         rows.size shouldBe 11
-        rows.find { it.iri("p") == "http://bods.openownership.org/vocabulary/statementId".iri() }!!
+        rows.find { it.iri("p") == "http://bods.openownership.org/vocabulary/statementId".toIri() }!!
             .str("o") shouldBe "openownership-register-5450813549318202701"
     }
 

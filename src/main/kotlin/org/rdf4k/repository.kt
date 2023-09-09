@@ -42,4 +42,4 @@ internal fun Model.replaceRepositoryId(newId: String): Model {
     return this
 }
 
-private val PREDICATE_REPO_NAME = "http://www.openrdf.org/config/repository#repositoryID".iri()
+private val PREDICATE_REPO_NAME = "http://www.openrdf.org/config/repository#repositoryID".toIri()

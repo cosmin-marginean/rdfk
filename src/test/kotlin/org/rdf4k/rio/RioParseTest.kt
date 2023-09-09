@@ -8,7 +8,7 @@ import org.eclipse.rdf4j.model.Statement
 import org.eclipse.rdf4j.rio.RDFFormat
 import org.eclipse.rdf4j.rio.helpers.StatementCollector
 import org.rdf4k.internals.resourceAsInput
-import org.rdf4k.iri
+import org.rdf4k.toIri
 import org.rdf4k.namespace
 import org.rdf4k.statement
 import java.io.File
@@ -88,17 +88,17 @@ class RioParseTest : StringSpec() {
         statements.size shouldBe 18
         statements.contains(
             statement(
-                "http://bods.openownership.org/resource/openownership-register-9473160899263237344".iri(),
-                "http://www.w3.org/1999/02/22-rdf-syntax-ns#type".iri(),
-                "http://bods.openownership.org/vocabulary/RegisteredEntity".iri()
+                "http://bods.openownership.org/resource/openownership-register-9473160899263237344".toIri(),
+                "http://www.w3.org/1999/02/22-rdf-syntax-ns#type".toIri(),
+                "http://bods.openownership.org/vocabulary/RegisteredEntity".toIri()
             )
         ) shouldBe true
 
         statements.contains(
             statement(
-                "http://bods.openownership.org/resource/openownership-register-5450813549318202701".iri(),
-                "http://bods.openownership.org/vocabulary/statesInterest".iri(),
-                "http://bods.openownership.org/resource/openownership-register-5450813549318202701_3".iri()
+                "http://bods.openownership.org/resource/openownership-register-5450813549318202701".toIri(),
+                "http://bods.openownership.org/vocabulary/statesInterest".toIri(),
+                "http://bods.openownership.org/resource/openownership-register-5450813549318202701_3".toIri()
             )
         ) shouldBe true
     }
